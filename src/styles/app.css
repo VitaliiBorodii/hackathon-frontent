@@ -10,6 +10,13 @@
     text-align: center;
 }
 
+.video-play {
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    right: 20px;
+}
+
 .download-link {
     text-decoration: none;
     color: #fff;

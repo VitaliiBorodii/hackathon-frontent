@@ -19706,6 +19706,14 @@
 
 	var _map2 = _interopRequireDefault(_map);
 
+	var _menuItem = __webpack_require__(241);
+
+	var _menuItem2 = _interopRequireDefault(_menuItem);
+
+	var _video = __webpack_require__(243);
+
+	var _video2 = _interopRequireDefault(_video);
+
 	var _actions = __webpack_require__(239);
 
 	var _actions2 = _interopRequireDefault(_actions);
@@ -19719,13 +19727,10 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	function menu(data) {
-	    return _react2.default.createElement(
-	        _list2.default,
-	        null,
-	        _react2.default.createElement(_listItem2.default, { primaryText: 'Date', leftIcon: _react2.default.createElement('i', { className: 'fa fa-calendar-o' }) }),
-	        _react2.default.createElement(_listItem2.default, { primaryText: 'Location', leftIcon: _react2.default.createElement('i', { className: 'fa fa-map-marker' }) })
-	    )[{
-	        text: data.file
+	    return [{
+	        text: 'Date: ' + new Date(data.time)
+	    }, {
+	        text: 'Place: [' + data.lat + ', ' + data.lng + ' ]'
 	    }];
 	}
 
@@ -19745,15 +19750,27 @@
 
 	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Container)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
 	            menuItems: [],
-	            leftBarWidth: 0
+	            leftBarWidth: 0,
+	            item: {}
 	        }, _this.clickHandler = function (data) {
 	            _this.setState({
+	                item: data,
 	                menuItems: menu(data),
 	                leftBarWidth: '600px'
 	            });
 	            _this.refs.leftNav.open();
 	        }, _this.closeSideBar = function () {
-	            debugger;
+	            var elem = document.querySelectorAll('[data-reactid=".0.0.3.0"]')[0];
+	            var self = _this;
+
+	            function closeSide() {
+	                self.refs.leftNav.close();
+	                elem.removeEventListener('click', closeSide);
+	            }
+
+	            if (elem) {
+	                elem.addEventListener('click', closeSide);
+	            }
 	        }, _this.componentDidMount = function () {
 	            _this.refs.leftNav.close();
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -19762,6 +19779,9 @@
 	    _createClass(Container, [{
 	        key: 'render',
 	        value: function render() {
+	            var i = this.state.item;
+	            var date = new Date(1000 * (i.time || null)).toISOString().slice(0, 10);
+	            var coords = '[' + i.lat + ', ' + i.lng + ']';
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -19784,22 +19804,45 @@
 	                            'Download the App'
 	                        )
 	                    },
-	                    _react2.default.createElement(_leftNav2.default, {
-	                        style: {
-	                            //width: this.state.leftBarWidth,
-	                            //backgroundColor: '#4CAF50',
-	                            color: '#fff'
+	                    _react2.default.createElement(
+	                        _leftNav2.default,
+	                        {
+	                            onNavOpen: this.closeSideBar,
+	                            style: {
+	                                //width: this.state.leftBarWidth,
+	                                //backgroundColor: '#4CAF50',
+	                                color: '#fff'
+	                            },
+	                            header: _react2.default.createElement(
+	                                'h2',
+	                                { className: 'side-bar-header' },
+	                                'Menu'
+	                            ),
+	                            onChange: this.closeSideBar
+	                            // menuItems={this.state.menuItems}
+	                            , ref: 'leftNav',
+	                            docked: false
 	                        },
-	                        header: _react2.default.createElement(
-	                            'h2',
-	                            { className: 'side-bar-header' },
-	                            'Inner Page'
+	                        _react2.default.createElement(
+	                            _menuItem2.default,
+	                            { index: 1 },
+	                            _react2.default.createElement(_video2.default, { src: this.state.item.file })
 	                        ),
-	                        onChange: this.closeSideBar,
-	                        menuItems: this.state.menuItems,
-	                        ref: 'leftNav',
-	                        docked: false
-	                    })
+	                        _react2.default.createElement(
+	                            _menuItem2.default,
+	                            { index: 1 },
+	                            _react2.default.createElement('i', { className: 'fa fa-calendar-o' }),
+	                            ' Date: ',
+	                            date
+	                        ),
+	                        _react2.default.createElement(
+	                            _menuItem2.default,
+	                            { index: 1 },
+	                            _react2.default.createElement('i', { className: 'fa fa-map-marker' }),
+	                            ' Place: ',
+	                            coords
+	                        )
+	                    )
 	                ),
 	                _react2.default.createElement(_map2.default, { ref: 'map', markerClick: this.clickHandler.bind(this) })
 	            );
@@ -28755,7 +28798,7 @@
 	                        time: +parse[0],
 	                        lat: +parse[1],
 	                        lng: +parse[2].slice(0, -4),
-	                        file: point
+	                        file: 'video/' + point
 	                    };
 	                    var marker = new google.maps.Marker({
 	                        position: { lat: data.lat, lng: data.lng },
@@ -28819,6 +28862,306 @@
 	  value: true
 	});
 	exports.default = ["1449933017,50.4671507,30.647079.mp4"];
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var React = __webpack_require__(2);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var Colors = __webpack_require__(181);
+	var CheckIcon = __webpack_require__(242);
+	var ListItem = __webpack_require__(234);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
+
+	var MenuItem = React.createClass({
+	  displayName: 'MenuItem',
+
+	  mixins: [PureRenderMixin, StylePropable],
+
+	  contextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+
+	  propTypes: {
+	    checked: React.PropTypes.bool,
+	    desktop: React.PropTypes.bool,
+	    disabled: React.PropTypes.bool,
+	    innerDivStyle: React.PropTypes.object,
+	    insetChildren: React.PropTypes.bool,
+	    focusState: React.PropTypes.oneOf(['none', 'focused', 'keyboard-focused']),
+	    leftIcon: React.PropTypes.element,
+	    rightIcon: React.PropTypes.element,
+	    secondaryText: React.PropTypes.node,
+	    style: React.PropTypes.object,
+	    value: React.PropTypes.string
+	  },
+
+	  //for passing default theme context to children
+	  childContextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+
+	  getChildContext: function getChildContext() {
+	    return {
+	      muiTheme: this.state.muiTheme
+	    };
+	  },
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
+	    };
+	  },
+
+	  //to update theme inside state whenever a new theme is passed down
+	  //from the parent / owner using context
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps, nextContext) {
+	    var newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+	    this.setState({ muiTheme: newMuiTheme });
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      focusState: 'none'
+	    };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this._applyFocusState();
+	  },
+
+	  componentDidUpdate: function componentDidUpdate() {
+	    this._applyFocusState();
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var checked = _props.checked;
+	    var children = _props.children;
+	    var desktop = _props.desktop;
+	    var disabled = _props.disabled;
+	    var focusState = _props.focusState;
+	    var innerDivStyle = _props.innerDivStyle;
+	    var insetChildren = _props.insetChildren;
+	    var leftIcon = _props.leftIcon;
+	    var rightIcon = _props.rightIcon;
+	    var secondaryText = _props.secondaryText;
+	    var style = _props.style;
+	    var value = _props.value;
+
+	    var other = _objectWithoutProperties(_props, ['checked', 'children', 'desktop', 'disabled', 'focusState', 'innerDivStyle', 'insetChildren', 'leftIcon', 'rightIcon', 'secondaryText', 'style', 'value']);
+
+	    var disabledColor = this.state.muiTheme.rawTheme.palette.disabledColor;
+	    var textColor = this.state.muiTheme.rawTheme.palette.textColor;
+	    var leftIndent = desktop ? 64 : 72;
+	    var sidePadding = desktop ? 24 : 16;
+
+	    var styles = {
+	      root: {
+	        color: disabled ? disabledColor : textColor,
+	        lineHeight: desktop ? '32px' : '48px',
+	        fontSize: desktop ? 15 : 16,
+	        whiteSpace: 'nowrap'
+	      },
+
+	      innerDivStyle: {
+	        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
+	        paddingRight: sidePadding,
+	        paddingBottom: 0,
+	        paddingTop: 0
+	      },
+
+	      secondaryText: {
+	        float: 'right'
+	      },
+
+	      leftIconDesktop: {
+	        padding: 0,
+	        left: 24,
+	        top: 4
+	      },
+
+	      rightIconDesktop: {
+	        padding: 0,
+	        right: 24,
+	        top: 4,
+	        fill: Colors.grey600
+	      }
+	    };
+
+	    var mergedRootStyles = this.mergeStyles(styles.root, style);
+	    var mergedInnerDivStyles = this.mergeStyles(styles.innerDivStyle, innerDivStyle);
+
+	    //Left Icon
+	    var leftIconElement = leftIcon ? leftIcon : checked ? React.createElement(CheckIcon, null) : null;
+	    if (leftIconElement && desktop) {
+	      var mergedLeftIconStyles = this.mergeStyles(styles.leftIconDesktop, leftIconElement.props.style);
+	      leftIconElement = React.cloneElement(leftIconElement, { style: mergedLeftIconStyles });
+	    }
+
+	    //Right Icon
+	    var rightIconElement = undefined;
+	    if (rightIcon) {
+	      var mergedRightIconStyles = desktop ? this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : null;
+	      rightIconElement = React.cloneElement(rightIcon, { style: mergedRightIconStyles });
+	    }
+
+	    //Secondary Text
+	    var secondaryTextElement = undefined;
+	    if (secondaryText) {
+	      var secondaryTextIsAnElement = React.isValidElement(secondaryText);
+	      var mergedSecondaryTextStyles = secondaryTextIsAnElement ? this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
+
+	      secondaryTextElement = secondaryTextIsAnElement ? React.cloneElement(secondaryText, { style: mergedSecondaryTextStyles }) : React.createElement(
+	        'div',
+	        { style: this.prepareStyles(styles.secondaryText) },
+	        secondaryText
+	      );
+	    }
+
+	    return React.createElement(
+	      ListItem,
+	      _extends({}, other, {
+	        disabled: disabled,
+	        innerDivStyle: mergedInnerDivStyles,
+	        insetChildren: insetChildren,
+	        leftIcon: leftIconElement,
+	        ref: 'listItem',
+	        rightIcon: rightIconElement,
+	        style: mergedRootStyles }),
+	      children,
+	      secondaryTextElement
+	    );
+	  },
+
+	  _applyFocusState: function _applyFocusState() {
+	    this.refs.listItem.applyFocusState(this.props.focusState);
+	  }
+	});
+
+	module.exports = MenuItem;
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var PureRenderMixin = __webpack_require__(188);
+	var SvgIcon = __webpack_require__(213);
+
+	var NavigationCheck = React.createClass({
+	  displayName: 'NavigationCheck',
+
+	  mixins: [PureRenderMixin],
+
+	  render: function render() {
+	    return React.createElement(
+	      SvgIcon,
+	      this.props,
+	      React.createElement('path', { d: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' })
+	    );
+	  }
+
+	});
+
+	module.exports = NavigationCheck;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _actions = __webpack_require__(239);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Video = (function (_Component) {
+	    _inherits(Video, _Component);
+
+	    function Video() {
+	        var _Object$getPrototypeO;
+
+	        var _temp, _this, _ret;
+
+	        _classCallCheck(this, Video);
+
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Video)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+	            playing: false
+	        }, _this.clickHandler = function () {
+	            var video = _this.refs.video;
+	            if (_this.refs.video.paused) {
+	                video.play();
+	                _this.setState({
+	                    playing: true
+	                });
+	            } else {
+	                video.pause();
+	                _this.setState({
+	                    playing: false
+	                });
+	            }
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+
+	    _createClass(Video, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement('video', { ref: 'video', width: '100%', src: this.props.src }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: "video-play" },
+	                    _react2.default.createElement(
+	                        'i',
+	                        { className: "fa " + (this.state.playing ? 'fa-pause' : 'fa-play'),
+	                            onClick: this.clickHandler.bind(this) },
+	                        ' '
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Video;
+	})(_react.Component);
+
+	exports.default = Video;
 
 /***/ }
 /******/ ]);

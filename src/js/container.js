@@ -6,29 +6,30 @@ import FlatButton from 'material-ui/lib/buttons/flat-button-label'
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item'
 import Map from './map'
-
+import MenuItem from 'material-ui/lib/menus/menu-item';
+import Video from './video'
 import actions from './actions';
 
 function menu (data) {
-    return (<List>
-        <ListItem primaryText="Date" leftIcon={<i className="fa fa-calendar-o" />}/>
-        <ListItem primaryText="Location" leftIcon={<i className="fa fa-map-marker" />}/>
-    </List>)
-
-        [
+    return ([
         {
-            text: data.file
+            text: 'Date: ' + new Date(data.time)
+        },
+        {
+            text: 'Place: [' + data.lat + ', ' + data.lng + ' ]'
         }
-        ]
+    ]);
 }
 
 export default class Container extends Component {
     state = {
         menuItems: [],
-        leftBarWidth: 0
+        leftBarWidth: 0,
+        item: {}
     }
     clickHandler = (data) => {
         this.setState({
+            item: data,
             menuItems: menu(data),
             leftBarWidth: '600px'
         });
@@ -36,12 +37,26 @@ export default class Container extends Component {
 }
     ;
     closeSideBar = () => {
-        debugger
+        var elem = document.querySelectorAll('[data-reactid=".0.0.3.0"]')[0];
+        var self = this;
+
+        function closeSide() {
+            self.refs.leftNav.close();
+            elem.removeEventListener('click', closeSide)
+        }
+
+        if (elem) {
+            elem.addEventListener('click', closeSide)
+        }
     }
+
     componentDidMount = () => {
         this.refs.leftNav.close()
     }
     render() {
+        var i = this.state.item;
+        var date = new Date(1000 * (i.time || null)).toISOString().slice(0, 10);
+        var coords = '[' + i.lat + ', ' + i.lng + ']';
         return (
             <div>
                 <AppBar
@@ -58,17 +73,22 @@ export default class Container extends Component {
                     iconElementRight={<a style={{marginTop: 0}} className='download-link' href='#'>Download the App</a>}
                 >
                     <LeftNav
+                        onNavOpen={this.closeSideBar}
                         style={{
                         //width: this.state.leftBarWidth,
                         //backgroundColor: '#4CAF50',
                         color: '#fff'
                         }}
-                        header={<h2 className="side-bar-header" >Inner Page</h2>}
+                        header={<h2 className="side-bar-header" >Menu</h2>}
                         onChange={this.closeSideBar}
-                        menuItems={this.state.menuItems}
+                        // menuItems={this.state.menuItems}
                         ref="leftNav"
                         docked={false}
-                    />
+                    >
+                        <MenuItem index={1}><Video src={this.state.item.file}/></MenuItem>
+                        <MenuItem index={1}><i className="fa fa-calendar-o"/> Date: {date}</MenuItem>
+                        <MenuItem index={1}><i className="fa fa-map-marker"/> Place: {coords}</MenuItem>
+                    </LeftNav>
                 </AppBar>
                 <Map ref="map" markerClick={this.clickHandler.bind(this)} />
             </div>

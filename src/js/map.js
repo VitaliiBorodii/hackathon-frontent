@@ -33,7 +33,7 @@ export default class Map extends Component {
                     time: +parse[0],
                     lat: +parse[1],
                     lng: +parse[2].slice(0, -4),
-                    file: point
+                    file: 'video/' + point
                 };
                 var marker = new google.maps.Marker({
                     position: {lat: data.lat, lng: data.lng},
