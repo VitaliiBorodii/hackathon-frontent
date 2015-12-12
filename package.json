@@ -32,6 +32,7 @@
     "es6-promise": "^3.0.2",
     "extract-text-webpack-plugin": "^0.9.1",
     "isomorphic-fetch": "^2.2.0",
+    "json-loader": "^0.5.4",
     "material-ui": "^0.13.4",
     "node-static": "^0.7.7",
     "normalize-css": "^2.3.1",

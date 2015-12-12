@@ -22,7 +22,9 @@ export default class Video extends Component {
     }
 
     render() {
-        return ( <div>
+        return ( <div style={{
+        margin: 0
+        }}>
                 <video ref="video" width="100%" src={this.props.src}/>
                 <div className={"video-play"}><i className={"fa "+ (this.state.playing ? 'fa-pause' : 'fa-play' )}
                                                  onClick={this.clickHandler.bind(this)}> </i></div>

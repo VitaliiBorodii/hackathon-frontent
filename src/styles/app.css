@@ -11,9 +11,11 @@ body, h1, h2, h3, h4, h5, h6, div, i, p, span {
 
 .side-bar-header {
     margin-top: 0px;
-    background-color: #4CAF50;
-    line-height: 64px;
-    text-align: center;
+}
+
+.here div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .side-bar .item-label {

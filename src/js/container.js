@@ -10,6 +10,15 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import Video from './video'
 import actions from './actions';
 
+var initData = require('json!./main.json');
+
+var headerStyle = {
+    backgroundColor: '#ee6e73',
+    height: '64px',
+    lineHeight: '64px',
+    boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
+    color: '#fff'
+}
 
 export default class Container extends Component {
     state = {
@@ -51,17 +60,11 @@ export default class Container extends Component {
         return (
             <div>
                 <AppBar
-                    style={{
-                    backgroundColor: '#ee6e73',
-                    height: '64px',
-                    lineHeight: '64px',
-                    boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
-                    color: '#fff'
-                    }}
+                    style={headerStyle}
                     ref="appBar"
                     title="Map"
                     iconElementLeft={<i style={{marginTop: 0, fontSize: '3em'}} className="fa fa-mobile" />}
-                    iconElementRight={<a style={{marginTop: 0}} className='download-link' href='#'>Download the App</a>}
+                    iconElementRight={<a style={{marginTop: 0}} className='download-link' href={initData.link}>Download the App</a>}
                 >
                     <LeftNav
                         onNavOpen={this.closeSideBar}
@@ -71,12 +74,12 @@ export default class Container extends Component {
                         color: '#fff'
                         }}
                         className="side-bar"
-                        header={<h2 className="side-bar-header" >Menu</h2>}
+                        header={<h2 className="side-bar-header" style={headerStyle} ></h2>}
                         onChange={this.closeSideBar}
                         ref="leftNav"
                         docked={false}
                     >
-                        <MenuItem index={0}><Video src={this.state.item.file}/></MenuItem>
+                        <MenuItem className="here" index={0}><Video src={this.state.item.file}/></MenuItem>
                         <MenuItem index={1}>
                             <hr />
                         </MenuItem>

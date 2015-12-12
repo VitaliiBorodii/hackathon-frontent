@@ -19720,6 +19720,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var initData = __webpack_require__(240);
+
+	var headerStyle = {
+	    backgroundColor: '#ee6e73',
+	    height: '64px',
+	    lineHeight: '64px',
+	    boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
+	    color: '#fff'
+	};
+
 	var Container = (function (_Component) {
 	    _inherits(Container, _Component);
 
@@ -19775,19 +19785,13 @@
 	                _react2.default.createElement(
 	                    _appBar2.default,
 	                    {
-	                        style: {
-	                            backgroundColor: '#ee6e73',
-	                            height: '64px',
-	                            lineHeight: '64px',
-	                            boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
-	                            color: '#fff'
-	                        },
+	                        style: headerStyle,
 	                        ref: 'appBar',
 	                        title: 'Map',
 	                        iconElementLeft: _react2.default.createElement('i', { style: { marginTop: 0, fontSize: '3em' }, className: 'fa fa-mobile' }),
 	                        iconElementRight: _react2.default.createElement(
 	                            'a',
-	                            { style: { marginTop: 0 }, className: 'download-link', href: '#' },
+	                            { style: { marginTop: 0 }, className: 'download-link', href: initData.link },
 	                            'Download the App'
 	                        )
 	                    },
@@ -19801,18 +19805,14 @@
 	                                color: '#fff'
 	                            },
 	                            className: 'side-bar',
-	                            header: _react2.default.createElement(
-	                                'h2',
-	                                { className: 'side-bar-header' },
-	                                'Menu'
-	                            ),
+	                            header: _react2.default.createElement('h2', { className: 'side-bar-header', style: headerStyle }),
 	                            onChange: this.closeSideBar,
 	                            ref: 'leftNav',
 	                            docked: false
 	                        },
 	                        _react2.default.createElement(
 	                            _menuItem2.default,
-	                            { index: 0 },
+	                            { className: 'here', index: 0 },
 	                            _react2.default.createElement(_video2.default, { src: this.state.item.file })
 	                        ),
 	                        _react2.default.createElement(
@@ -28836,19 +28836,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _videos = __webpack_require__(240);
-
-	var _videos2 = _interopRequireDefault(_videos);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+	var initData = __webpack_require__(240);
 	exports.default = {
 	    loadMarkers: function loadMarkers(cb) {
-	        cb(_videos2.default);
-	    },
-	    clickHandler: function clickHandler(data) {
-	        console.log(data);
+	        cb(initData.videos);
 	    }
 	};
 
@@ -28856,12 +28847,12 @@
 /* 240 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = ["1449933017,50.4671507,30.647079.mp4"];
+	module.exports = {
+		"videos": [
+			"1449933017,50.4671507,30.647079.mp4"
+		],
+		"link": "#"
+	};
 
 /***/ },
 /* 241 */
@@ -29143,7 +29134,9 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
+	                { style: {
+	                        margin: 0
+	                    } },
 	                _react2.default.createElement('video', { ref: 'video', width: '100%', src: this.props.src }),
 	                _react2.default.createElement(
 	                    'div',

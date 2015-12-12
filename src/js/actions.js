@@ -1,10 +1,6 @@
-import markers from './videos';
-
+var initData = require('json!./main.json');
 export default {
     loadMarkers (cb) {
-        cb(markers);
-    },
-    clickHandler (data) {
-        console.log(data)
+        cb(initData.videos);
     }
 }
