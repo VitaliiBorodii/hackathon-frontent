@@ -28,12 +28,19 @@ export default class Map extends Component {
         var map = new google.maps.Map(mapCanvas, mapOptions);
         actions.loadMarkers((data) => {
             data.forEach((point) => {
+                var parse = point.split(',');
+                var data = {
+                    time: +parse[0],
+                    lat: +parse[1],
+                    lng: +parse[2].slice(0, -4),
+                    file: point
+                };
                 var marker = new google.maps.Marker({
-                    position: {lat: point.Latitude, lng: point.Longtitude},
+                    position: {lat: data.lat, lng: data.lng},
                     map: map,
                     title: point.Title
                 });
-                marker.addListener('click', this.props.markerClick.bind(marker, point));
+                marker.addListener('click', this.props.markerClick.bind(null, data));
             })
         })
 }

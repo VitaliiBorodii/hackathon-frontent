@@ -3,15 +3,21 @@ import React, { Component } from 'react'
 import AppBar from 'material-ui/lib/app-bar';
 import LeftNav from 'material-ui/lib/left-nav';
 import FlatButton from 'material-ui/lib/buttons/flat-button-label'
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item'
 import Map from './map'
 
 import actions from './actions';
-const menuItems = []
 
 function menu (data) {
-    return [
+    return (<List>
+        <ListItem primaryText="Date" leftIcon={<i className="fa fa-calendar-o" />}/>
+        <ListItem primaryText="Location" leftIcon={<i className="fa fa-map-marker" />}/>
+    </List>)
+
+        [
         {
-            text: data.Title
+            text: data.file
         }
         ]
 }
@@ -19,16 +25,19 @@ function menu (data) {
 export default class Container extends Component {
     state = {
         menuItems: [],
-        leftNavOpen: false
+        leftBarWidth: 0
     }
     clickHandler = (data) => {
         this.setState({
             menuItems: menu(data),
-            leftNavOpen: true
+            leftBarWidth: '600px'
         });
         this.refs.leftNav.open()
 }
     ;
+    closeSideBar = () => {
+        debugger
+    }
     componentDidMount = () => {
         this.refs.leftNav.close()
     }
@@ -49,10 +58,16 @@ export default class Container extends Component {
                     iconElementRight={<a style={{marginTop: 0}} className='download-link' href='#'>Download the App</a>}
                 >
                     <LeftNav
+                        style={{
+                        //width: this.state.leftBarWidth,
+                        //backgroundColor: '#4CAF50',
+                        color: '#fff'
+                        }}
+                        header={<h2 className="side-bar-header" >Inner Page</h2>}
+                        onChange={this.closeSideBar}
                         menuItems={this.state.menuItems}
                         ref="leftNav"
-                        open={this.state.leftNavOpen}
-                        //docked={true}
+                        docked={false}
                     />
                 </AppBar>
                 <Map ref="map" markerClick={this.clickHandler.bind(this)} />

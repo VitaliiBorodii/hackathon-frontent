@@ -1,4 +1,4 @@
-import markers from './markers';
+import markers from './videos';
 
 export default {
     loadMarkers (cb) {
