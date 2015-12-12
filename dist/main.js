@@ -52,9 +52,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(195);
+	var _reactDom = __webpack_require__(159);
 
-	var _container = __webpack_require__(234);
+	var _container = __webpack_require__(160);
 
 	var _container2 = _interopRequireDefault(_container);
 
@@ -19661,6 +19661,137 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	module.exports = __webpack_require__(4);
+
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _appBar = __webpack_require__(161);
+
+	var _appBar2 = _interopRequireDefault(_appBar);
+
+	var _leftNav = __webpack_require__(215);
+
+	var _leftNav2 = _interopRequireDefault(_leftNav);
+
+	var _flatButtonLabel = __webpack_require__(232);
+
+	var _flatButtonLabel2 = _interopRequireDefault(_flatButtonLabel);
+
+	var _map = __webpack_require__(233);
+
+	var _map2 = _interopRequireDefault(_map);
+
+	var _actions = __webpack_require__(234);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var menuItems = [];
+
+	function menu(data) {
+	    return [{
+	        text: data.Title
+	    }];
+	}
+
+	var Container = (function (_Component) {
+	    _inherits(Container, _Component);
+
+	    function Container() {
+	        var _Object$getPrototypeO;
+
+	        var _temp, _this, _ret;
+
+	        _classCallCheck(this, Container);
+
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Container)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+	            menuItems: [],
+	            leftNavOpen: false
+	        }, _this.clickHandler = function (data) {
+	            _this.setState({
+	                menuItems: menu(data),
+	                leftNavOpen: true
+	            });
+	            _this.refs.leftNav.open();
+	        }, _this.componentDidMount = function () {
+	            _this.refs.leftNav.close();
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+
+	    _createClass(Container, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    _appBar2.default,
+	                    {
+	                        style: {
+	                            backgroundColor: '#ee6e73',
+	                            height: '64px',
+	                            lineHeight: '64px',
+	                            boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
+	                            color: '#fff'
+	                        },
+	                        ref: 'appBar',
+	                        title: 'Map',
+	                        iconElementLeft: _react2.default.createElement('i', { style: { marginTop: 0, fontSize: '3em' }, className: 'fa fa-mobile' }),
+	                        iconElementRight: _react2.default.createElement(
+	                            'a',
+	                            { style: { marginTop: 0 }, className: 'download-link', href: '#' },
+	                            'Download the App'
+	                        )
+	                    },
+	                    _react2.default.createElement(_leftNav2.default, {
+	                        menuItems: this.state.menuItems,
+	                        ref: 'leftNav',
+	                        open: this.state.leftNavOpen
+	                        //docked={true}
+	                    })
+	                ),
+	                _react2.default.createElement(_map2.default, { ref: 'map', markerClick: this.clickHandler.bind(this) })
+	            );
+	        }
+	    }]);
+
+	    return Container;
+	})(_react.Component);
+
+	exports.default = Container;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -19668,14 +19799,14 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var Typography = __webpack_require__(178);
-	var IconButton = __webpack_require__(180);
-	var NavigationMenu = __webpack_require__(211);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
-	var Paper = __webpack_require__(213);
-	var PropTypes = __webpack_require__(184);
+	var StylePropable = __webpack_require__(162);
+	var Typography = __webpack_require__(180);
+	var IconButton = __webpack_require__(182);
+	var NavigationMenu = __webpack_require__(212);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
+	var Paper = __webpack_require__(214);
+	var PropTypes = __webpack_require__(186);
 
 	var AppBar = React.createClass({
 	  displayName: 'AppBar',
@@ -19933,14 +20064,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 160 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ImmutabilityHelper = __webpack_require__(161);
-	var Styles = __webpack_require__(164);
+	var ImmutabilityHelper = __webpack_require__(163);
+	var Styles = __webpack_require__(166);
 
 	// This mixin isn't necessary and will be removed in v0.11
 
@@ -19978,13 +20109,13 @@
 	};
 
 /***/ },
-/* 161 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var update = __webpack_require__(162);
+	var update = __webpack_require__(164);
 
 	function mergeSingle(objA, objB) {
 	  if (!objA) return objB;
@@ -20024,13 +20155,13 @@
 	};
 
 /***/ },
-/* 162 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(163);
+	module.exports = __webpack_require__(165);
 
 /***/ },
-/* 163 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20143,13 +20274,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 164 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var AutoPrefix = __webpack_require__(165);
-	var ImmutabilityHelper = __webpack_require__(161);
+	var AutoPrefix = __webpack_require__(167);
+	var ImmutabilityHelper = __webpack_require__(163);
 
 	var reTranslate = /((^|\s)translate(3d|X)?\()(\-?[\d]+)/;
 
@@ -20252,7 +20383,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 165 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20263,7 +20394,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _inlineStylePrefixer = __webpack_require__(166);
+	var _inlineStylePrefixer = __webpack_require__(168);
 
 	var _inlineStylePrefixer2 = _interopRequireDefault(_inlineStylePrefixer);
 
@@ -20337,7 +20468,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 166 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -20352,19 +20483,19 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _getBrowserInformation = __webpack_require__(167);
+	var _getBrowserInformation = __webpack_require__(169);
 
 	var _getBrowserInformation2 = _interopRequireDefault(_getBrowserInformation);
 
-	var _getPrefixedKeyframes = __webpack_require__(169);
+	var _getPrefixedKeyframes = __webpack_require__(171);
 
 	var _getPrefixedKeyframes2 = _interopRequireDefault(_getPrefixedKeyframes);
 
-	var _caniuseData = __webpack_require__(170);
+	var _caniuseData = __webpack_require__(172);
 
 	var _caniuseData2 = _interopRequireDefault(_caniuseData);
 
-	var _Plugins = __webpack_require__(171);
+	var _Plugins = __webpack_require__(173);
 
 	var _Plugins2 = _interopRequireDefault(_Plugins);
 
@@ -20537,7 +20668,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 167 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20548,7 +20679,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _bowser = __webpack_require__(168);
+	var _bowser = __webpack_require__(170);
 
 	var _bowser2 = _interopRequireDefault(_bowser);
 
@@ -20746,7 +20877,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 168 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -21043,7 +21174,7 @@
 
 
 /***/ },
-/* 169 */
+/* 171 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21067,13 +21198,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 170 */
+/* 172 */
 /***/ function(module, exports) {
 
 	var caniuseData = {"chrome":{"transform":35,"transformOrigin":35,"transformOriginX":35,"transformOriginY":35,"backfaceVisibility":35,"perspective":35,"perspectiveOrigin":35,"transformStyle":35,"transformOriginZ":35,"animation":42,"animationDelay":42,"animationDirection":42,"animationFillMode":42,"animationDuration":42,"animationIterationCount":42,"animationName":42,"animationPlayState":42,"animationTimingFunction":42,"appearance":49,"userSelect":49,"fontKerning":32,"textEmphasisPosition":49,"textEmphasis":49,"textEmphasisStyle":49,"textEmphasisColor":49,"boxDecorationBreak":49,"clipPath":49,"maskImage":49,"maskMode":49,"maskRepeat":49,"maskPosition":49,"maskClip":49,"maskOrigin":49,"maskSize":49,"maskComposite":49,"mask":49,"maskBorderSource":49,"maskBorderMode":49,"maskBorderSlice":49,"maskBorderWidth":49,"maskBorderOutset":49,"maskBorderRepeat":49,"maskBorder":49,"maskType":49,"textDecorationStyle":49,"textDecorationSkip":49,"textDecorationLine":49,"textDecorationColor":49,"filter":49,"fontFeatureSettings":49,"breakAfter":49,"breakBefore":49,"breakInside":49,"columnCount":49,"columnFill":49,"columnGap":49,"columnRule":49,"columnRuleColor":49,"columnRuleStyle":49,"columnRuleWidth":49,"columns":49,"columnSpan":49,"columnWidth":49},"safari":{"flex":8,"flexBasis":8,"flexDirection":8,"flexGrow":8,"flexFlow":8,"flexShrink":8,"flexWrap":8,"alignContent":8,"alignItems":8,"alignSelf":8,"justifyContent":8,"order":8,"transition":6,"transitionDelay":6,"transitionDuration":6,"transitionProperty":6,"transitionTimingFunction":6,"transform":8,"transformOrigin":8,"transformOriginX":8,"transformOriginY":8,"backfaceVisibility":8,"perspective":8,"perspectiveOrigin":8,"transformStyle":8,"transformOriginZ":8,"animation":8,"animationDelay":8,"animationDirection":8,"animationFillMode":8,"animationDuration":8,"animationIterationCount":8,"animationName":8,"animationPlayState":8,"animationTimingFunction":8,"appearance":9,"userSelect":9,"backdropFilter":9,"fontKerning":9,"scrollSnapType":9,"scrollSnapPointsX":9,"scrollSnapPointsY":9,"scrollSnapDestination":9,"scrollSnapCoordinate":9,"textEmphasisPosition":7,"textEmphasis":7,"textEmphasisStyle":7,"textEmphasisColor":7,"boxDecorationBreak":9,"clipPath":9,"maskImage":9,"maskMode":9,"maskRepeat":9,"maskPosition":9,"maskClip":9,"maskOrigin":9,"maskSize":9,"maskComposite":9,"mask":9,"maskBorderSource":9,"maskBorderMode":9,"maskBorderSlice":9,"maskBorderWidth":9,"maskBorderOutset":9,"maskBorderRepeat":9,"maskBorder":9,"maskType":9,"textDecorationStyle":9,"textDecorationSkip":9,"textDecorationLine":9,"textDecorationColor":9,"shapeImageThreshold":9,"shapeImageMargin":9,"shapeImageOutside":9,"filter":9,"hyphens":9,"flowInto":9,"flowFrom":9,"breakBefore":8,"breakAfter":8,"breakInside":8,"regionFragment":9,"columnCount":8,"columnFill":8,"columnGap":8,"columnRule":8,"columnRuleColor":8,"columnRuleStyle":8,"columnRuleWidth":8,"columns":8,"columnSpan":8,"columnWidth":8},"firefox":{"appearance":45,"userSelect":45,"boxSizing":28,"textAlignLast":45,"textDecorationStyle":35,"textDecorationSkip":35,"textDecorationLine":35,"textDecorationColor":35,"tabSize":45,"hyphens":42,"fontFeatureSettings":33,"breakAfter":45,"breakBefore":45,"breakInside":45,"columnCount":45,"columnFill":45,"columnGap":45,"columnRule":45,"columnRuleColor":45,"columnRuleStyle":45,"columnRuleWidth":45,"columns":45,"columnSpan":45,"columnWidth":45},"opera":{"flex":16,"flexBasis":16,"flexDirection":16,"flexGrow":16,"flexFlow":16,"flexShrink":16,"flexWrap":16,"alignContent":16,"alignItems":16,"alignSelf":16,"justifyContent":16,"order":16,"transform":22,"transformOrigin":22,"transformOriginX":22,"transformOriginY":22,"backfaceVisibility":22,"perspective":22,"perspectiveOrigin":22,"transformStyle":22,"transformOriginZ":22,"animation":29,"animationDelay":29,"animationDirection":29,"animationFillMode":29,"animationDuration":29,"animationIterationCount":29,"animationName":29,"animationPlayState":29,"animationTimingFunction":29,"appearance":35,"userSelect":35,"fontKerning":19,"textEmphasisPosition":35,"textEmphasis":35,"textEmphasisStyle":35,"textEmphasisColor":35,"boxDecorationBreak":35,"clipPath":35,"maskImage":35,"maskMode":35,"maskRepeat":35,"maskPosition":35,"maskClip":35,"maskOrigin":35,"maskSize":35,"maskComposite":35,"mask":35,"maskBorderSource":35,"maskBorderMode":35,"maskBorderSlice":35,"maskBorderWidth":35,"maskBorderOutset":35,"maskBorderRepeat":35,"maskBorder":35,"maskType":35,"filter":35,"fontFeatureSettings":35,"breakAfter":35,"breakBefore":35,"breakInside":35,"columnCount":35,"columnFill":35,"columnGap":35,"columnRule":35,"columnRuleColor":35,"columnRuleStyle":35,"columnRuleWidth":35,"columns":35,"columnSpan":35,"columnWidth":35},"ie":{"gridTemplateRows":11,"grid":11,"flowInto":11,"flexDirection":10,"touchAction":10,"gridRow":11,"scrollSnapPointsX":11,"wrapMargin":11,"breakBefore":11,"gridRowEnd":11,"gridRowStart":11,"breakInside":11,"transformOrigin":9,"scrollSnapType":11,"scrollSnapDestination":11,"gridTemplate":11,"flexWrap":10,"transformOriginX":9,"flowFrom":11,"gridColumnStart":11,"userSelect":11,"wrapFlow":11,"scrollSnapCoordinate":11,"gridGap":11,"gridAutoRows":11,"hyphens":11,"regionFragment":11,"flex":10,"columnGap":11,"wrapThrough":11,"transformOriginY":9,"breakAfter":11,"rowGap":11,"gridTemplateColumns":11,"gridArea":11,"transform":9,"gridAutoFlow":11,"flexFlow":10,"gridTemplateAreas":11,"gridColumn":11,"gridAutoColumns":11,"scrollSnapPointsY":11,"textSizeAdjust":11},"ios_saf":{"flex":8.1,"flexBasis":8.1,"flexDirection":8.1,"flexGrow":8.1,"flexFlow":8.1,"flexShrink":8.1,"flexWrap":8.1,"alignContent":8.1,"alignItems":8.1,"alignSelf":8.1,"justifyContent":8.1,"order":8.1,"transition":6,"transitionDelay":6,"transitionDuration":6,"transitionProperty":6,"transitionTimingFunction":6,"transform":8.1,"transformOrigin":8.1,"transformOriginX":8.1,"transformOriginY":8.1,"backfaceVisibility":8.1,"perspective":8.1,"perspectiveOrigin":8.1,"transformStyle":8.1,"transformOriginZ":8.1,"animation":8.1,"animationDelay":8.1,"animationDirection":8.1,"animationFillMode":8.1,"animationDuration":8.1,"animationIterationCount":8.1,"animationName":8.1,"animationPlayState":8.1,"animationTimingFunction":8.1,"appearance":9,"userSelect":9,"backdropFilter":9,"fontKerning":9,"scrollSnapType":9,"scrollSnapPointsX":9,"scrollSnapPointsY":9,"scrollSnapDestination":9,"scrollSnapCoordinate":9,"boxDecorationBreak":9,"clipPath":9,"maskImage":9,"maskMode":9,"maskRepeat":9,"maskPosition":9,"maskClip":9,"maskOrigin":9,"maskSize":9,"maskComposite":9,"mask":9,"maskBorderSource":9,"maskBorderMode":9,"maskBorderSlice":9,"maskBorderWidth":9,"maskBorderOutset":9,"maskBorderRepeat":9,"maskBorder":9,"maskType":9,"textSizeAdjust":9,"textDecorationStyle":9,"textDecorationSkip":9,"textDecorationLine":9,"textDecorationColor":9,"shapeImageThreshold":9,"shapeImageMargin":9,"shapeImageOutside":9,"filter":9,"hyphens":9,"flowInto":9,"flowFrom":9,"breakBefore":8.1,"breakAfter":8.1,"breakInside":8.1,"regionFragment":9,"columnCount":8.1,"columnFill":8.1,"columnGap":8.1,"columnRule":8.1,"columnRuleColor":8.1,"columnRuleStyle":8.1,"columnRuleWidth":8.1,"columns":8.1,"columnSpan":8.1,"columnWidth":8.1},"android":{"borderImage":4.2,"borderImageOutset":4.2,"borderImageRepeat":4.2,"borderImageSlice":4.2,"borderImageSource":4.2,"borderImageWidth":4.2,"flex":4.2,"flexBasis":4.2,"flexDirection":4.2,"flexGrow":4.2,"flexFlow":4.2,"flexShrink":4.2,"flexWrap":4.2,"alignContent":4.2,"alignItems":4.2,"alignSelf":4.2,"justifyContent":4.2,"order":4.2,"transition":4.2,"transitionDelay":4.2,"transitionDuration":4.2,"transitionProperty":4.2,"transitionTimingFunction":4.2,"transform":4.4,"transformOrigin":4.4,"transformOriginX":4.4,"transformOriginY":4.4,"backfaceVisibility":4.4,"perspective":4.4,"perspectiveOrigin":4.4,"transformStyle":4.4,"transformOriginZ":4.4,"animation":4.4,"animationDelay":4.4,"animationDirection":4.4,"animationFillMode":4.4,"animationDuration":4.4,"animationIterationCount":4.4,"animationName":4.4,"animationPlayState":4.4,"animationTimingFunction":4.4,"appearance":44,"userSelect":44,"fontKerning":4.4,"textEmphasisPosition":44,"textEmphasis":44,"textEmphasisStyle":44,"textEmphasisColor":44,"boxDecorationBreak":44,"clipPath":44,"maskImage":44,"maskMode":44,"maskRepeat":44,"maskPosition":44,"maskClip":44,"maskOrigin":44,"maskSize":44,"maskComposite":44,"mask":44,"maskBorderSource":44,"maskBorderMode":44,"maskBorderSlice":44,"maskBorderWidth":44,"maskBorderOutset":44,"maskBorderRepeat":44,"maskBorder":44,"maskType":44,"filter":44,"fontFeatureSettings":44,"breakAfter":44,"breakBefore":44,"breakInside":44,"columnCount":44,"columnFill":44,"columnGap":44,"columnRule":44,"columnRuleColor":44,"columnRuleStyle":44,"columnRuleWidth":44,"columns":44,"columnSpan":44,"columnWidth":44},"and_chr":{"appearance":46,"userSelect":46,"textEmphasisPosition":46,"textEmphasis":46,"textEmphasisStyle":46,"textEmphasisColor":46,"boxDecorationBreak":46,"clipPath":46,"maskImage":46,"maskMode":46,"maskRepeat":46,"maskPosition":46,"maskClip":46,"maskOrigin":46,"maskSize":46,"maskComposite":46,"mask":46,"maskBorderSource":46,"maskBorderMode":46,"maskBorderSlice":46,"maskBorderWidth":46,"maskBorderOutset":46,"maskBorderRepeat":46,"maskBorder":46,"maskType":46,"textDecorationStyle":46,"textDecorationSkip":46,"textDecorationLine":46,"textDecorationColor":46,"filter":46,"fontFeatureSettings":46,"breakAfter":46,"breakBefore":46,"breakInside":46,"columnCount":46,"columnFill":46,"columnGap":46,"columnRule":46,"columnRuleColor":46,"columnRuleStyle":46,"columnRuleWidth":46,"columns":46,"columnSpan":46,"columnWidth":46},"and_uc":{"flex":9.9,"flexBasis":9.9,"flexDirection":9.9,"flexGrow":9.9,"flexFlow":9.9,"flexShrink":9.9,"flexWrap":9.9,"alignContent":9.9,"alignItems":9.9,"alignSelf":9.9,"justifyContent":9.9,"order":9.9,"transition":9.9,"transitionDelay":9.9,"transitionDuration":9.9,"transitionProperty":9.9,"transitionTimingFunction":9.9,"transform":9.9,"transformOrigin":9.9,"transformOriginX":9.9,"transformOriginY":9.9,"backfaceVisibility":9.9,"perspective":9.9,"perspectiveOrigin":9.9,"transformStyle":9.9,"transformOriginZ":9.9,"animation":9.9,"animationDelay":9.9,"animationDirection":9.9,"animationFillMode":9.9,"animationDuration":9.9,"animationIterationCount":9.9,"animationName":9.9,"animationPlayState":9.9,"animationTimingFunction":9.9,"appearance":9.9,"userSelect":9.9,"fontKerning":9.9,"textEmphasisPosition":9.9,"textEmphasis":9.9,"textEmphasisStyle":9.9,"textEmphasisColor":9.9,"maskImage":9.9,"maskMode":9.9,"maskRepeat":9.9,"maskPosition":9.9,"maskClip":9.9,"maskOrigin":9.9,"maskSize":9.9,"maskComposite":9.9,"mask":9.9,"maskBorderSource":9.9,"maskBorderMode":9.9,"maskBorderSlice":9.9,"maskBorderWidth":9.9,"maskBorderOutset":9.9,"maskBorderRepeat":9.9,"maskBorder":9.9,"maskType":9.9,"textSizeAdjust":9.9,"filter":9.9,"hyphens":9.9,"flowInto":9.9,"flowFrom":9.9,"breakBefore":9.9,"breakAfter":9.9,"breakInside":9.9,"regionFragment":9.9,"fontFeatureSettings":9.9,"columnCount":9.9,"columnFill":9.9,"columnGap":9.9,"columnRule":9.9,"columnRuleColor":9.9,"columnRuleStyle":9.9,"columnRuleWidth":9.9,"columns":9.9,"columnSpan":9.9,"columnWidth":9.9},"op_mini":{"borderImage":5,"borderImageOutset":5,"borderImageRepeat":5,"borderImageSlice":5,"borderImageSource":5,"borderImageWidth":5,"tabSize":5,"objectFit":5,"objectPosition":5}}; module.exports = caniuseData
 
 /***/ },
-/* 171 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21084,29 +21215,29 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _pluginsCursor = __webpack_require__(172);
+	var _pluginsCursor = __webpack_require__(174);
 
 	var _pluginsCursor2 = _interopRequireDefault(_pluginsCursor);
 
-	var _pluginsFlex = __webpack_require__(173);
+	var _pluginsFlex = __webpack_require__(175);
 
 	var _pluginsFlex2 = _interopRequireDefault(_pluginsFlex);
 
-	var _pluginsSizing = __webpack_require__(174);
+	var _pluginsSizing = __webpack_require__(176);
 
 	var _pluginsSizing2 = _interopRequireDefault(_pluginsSizing);
 
-	var _pluginsGradient = __webpack_require__(175);
+	var _pluginsGradient = __webpack_require__(177);
 
 	var _pluginsGradient2 = _interopRequireDefault(_pluginsGradient);
 
 	// special flexbox specifications
 
-	var _pluginsFlexboxIE = __webpack_require__(176);
+	var _pluginsFlexboxIE = __webpack_require__(178);
 
 	var _pluginsFlexboxIE2 = _interopRequireDefault(_pluginsFlexboxIE);
 
-	var _pluginsFlexboxOld = __webpack_require__(177);
+	var _pluginsFlexboxOld = __webpack_require__(179);
 
 	var _pluginsFlexboxOld2 = _interopRequireDefault(_pluginsFlexboxOld);
 
@@ -21114,7 +21245,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 172 */
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21140,7 +21271,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 173 */
+/* 175 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21166,7 +21297,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 174 */
+/* 176 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21195,7 +21326,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 175 */
+/* 177 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21222,7 +21353,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 176 */
+/* 178 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21268,7 +21399,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 177 */
+/* 179 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21320,14 +21451,14 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 178 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var Colors = __webpack_require__(179);
+	var Colors = __webpack_require__(181);
 
 	var Typography = function Typography() {
 	  _classCallCheck(this, Typography);
@@ -21352,7 +21483,7 @@
 	module.exports = new Typography();
 
 /***/ },
-/* 179 */
+/* 181 */
 /***/ function(module, exports) {
 
 	// To include this file in your project:
@@ -21652,7 +21783,7 @@
 	};
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21662,16 +21793,16 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var ContextPure = __webpack_require__(181);
-	var Transitions = __webpack_require__(183);
-	var PropTypes = __webpack_require__(184);
-	var EnhancedButton = __webpack_require__(185);
-	var FontIcon = __webpack_require__(209);
-	var Tooltip = __webpack_require__(210);
-	var Children = __webpack_require__(189);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var ContextPure = __webpack_require__(183);
+	var Transitions = __webpack_require__(185);
+	var PropTypes = __webpack_require__(186);
+	var EnhancedButton = __webpack_require__(187);
+	var FontIcon = __webpack_require__(210);
+	var Tooltip = __webpack_require__(211);
+	var Children = __webpack_require__(191);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var IconButton = React.createClass({
 	  displayName: 'IconButton',
@@ -21900,12 +22031,12 @@
 	module.exports = IconButton;
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var shallowEqual = __webpack_require__(182);
+	var shallowEqual = __webpack_require__(184);
 
 	function relevantContextKeysEqual(classObject, currentContext, nextContext) {
 
@@ -21961,7 +22092,7 @@
 	};
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22001,12 +22132,12 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var AutoPrefix = __webpack_require__(165);
+	var AutoPrefix = __webpack_require__(167);
 
 	module.exports = {
 
@@ -22041,7 +22172,7 @@
 	};
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22073,7 +22204,7 @@
 	};
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22083,16 +22214,16 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var PureRenderMixin = __webpack_require__(186);
-	var StylePropable = __webpack_require__(160);
-	var Colors = __webpack_require__(179);
-	var Children = __webpack_require__(189);
-	var Events = __webpack_require__(192);
-	var KeyCode = __webpack_require__(193);
-	var FocusRipple = __webpack_require__(194);
-	var TouchRipple = __webpack_require__(206);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var Colors = __webpack_require__(181);
+	var Children = __webpack_require__(191);
+	var Events = __webpack_require__(194);
+	var KeyCode = __webpack_require__(195);
+	var FocusRipple = __webpack_require__(196);
+	var TouchRipple = __webpack_require__(207);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var styleInjected = false;
 	var listening = false;
@@ -22379,13 +22510,13 @@
 	module.exports = EnhancedButton;
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(187);
+	module.exports = __webpack_require__(189);
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22401,7 +22532,7 @@
 
 	'use strict';
 
-	var shallowCompare = __webpack_require__(188);
+	var shallowCompare = __webpack_require__(190);
 
 	/**
 	 * If your React component's render function is "pure", e.g. it will render the
@@ -22436,7 +22567,7 @@
 	module.exports = ReactComponentWithPureRenderMixin;
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22465,13 +22596,13 @@
 	module.exports = shallowCompare;
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var createFragment = __webpack_require__(190);
+	var createFragment = __webpack_require__(192);
 
 	module.exports = {
 
@@ -22511,13 +22642,13 @@
 	};
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(191).create;
+	module.exports = __webpack_require__(193).create;
 
 /***/ },
-/* 191 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22587,7 +22718,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22632,7 +22763,7 @@
 	};
 
 /***/ },
-/* 193 */
+/* 195 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22649,19 +22780,19 @@
 	};
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var PureRenderMixin = __webpack_require__(186);
-	var StylePropable = __webpack_require__(160);
-	var AutoPrefix = __webpack_require__(165);
-	var Colors = __webpack_require__(179);
-	var Transitions = __webpack_require__(183);
-	var ScaleInTransitionGroup = __webpack_require__(196);
+	var ReactDOM = __webpack_require__(159);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var AutoPrefix = __webpack_require__(167);
+	var Colors = __webpack_require__(181);
+	var Transitions = __webpack_require__(185);
+	var ScaleInTransitionGroup = __webpack_require__(197);
 
 	var pulsateDuration = 750;
 
@@ -22780,16 +22911,7 @@
 	module.exports = FocusRipple;
 
 /***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = __webpack_require__(4);
-
-
-/***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22799,12 +22921,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var PureRenderMixin = __webpack_require__(186);
-	var ReactTransitionGroup = __webpack_require__(197);
-	var StylePropable = __webpack_require__(160);
-	var ScaleInChild = __webpack_require__(200);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var PureRenderMixin = __webpack_require__(188);
+	var ReactTransitionGroup = __webpack_require__(198);
+	var StylePropable = __webpack_require__(162);
+	var ScaleInChild = __webpack_require__(201);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var ScaleIn = React.createClass({
 	  displayName: 'ScaleIn',
@@ -22897,13 +23019,13 @@
 	module.exports = ScaleIn;
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(198);
+	module.exports = __webpack_require__(199);
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22920,7 +23042,7 @@
 	'use strict';
 
 	var React = __webpack_require__(3);
-	var ReactTransitionChildMapping = __webpack_require__(199);
+	var ReactTransitionChildMapping = __webpack_require__(200);
 
 	var assign = __webpack_require__(40);
 	var emptyFunction = __webpack_require__(16);
@@ -23113,7 +23235,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23216,7 +23338,7 @@
 	module.exports = ReactTransitionChildMapping;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23226,13 +23348,13 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var PureRenderMixin = __webpack_require__(186);
-	var StylePropable = __webpack_require__(160);
-	var AutoPrefix = __webpack_require__(165);
-	var Transitions = __webpack_require__(183);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var ReactDOM = __webpack_require__(159);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var AutoPrefix = __webpack_require__(167);
+	var Transitions = __webpack_require__(185);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var ScaleInChild = React.createClass({
 	  displayName: 'ScaleInChild',
@@ -23360,14 +23482,14 @@
 	module.exports = ScaleInChild;
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Colors = __webpack_require__(179);
-	var ColorManipulator = __webpack_require__(202);
-	var Spacing = __webpack_require__(203);
+	var Colors = __webpack_require__(181);
+	var ColorManipulator = __webpack_require__(203);
+	var Spacing = __webpack_require__(204);
 
 	/*
 	 *  Light Theme is the default theme used in material-ui. It is guaranteed to
@@ -23394,7 +23516,7 @@
 	};
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23573,7 +23695,7 @@
 	};
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23594,15 +23716,15 @@
 	};
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Colors = __webpack_require__(179);
-	var ColorManipulator = __webpack_require__(202);
-	var Extend = __webpack_require__(205);
-	var update = __webpack_require__(162);
+	var Colors = __webpack_require__(181);
+	var ColorManipulator = __webpack_require__(203);
+	var Extend = __webpack_require__(206);
+	var update = __webpack_require__(164);
 
 	module.exports = {
 
@@ -23853,7 +23975,7 @@
 	};
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23907,19 +24029,19 @@
 	module.exports = extend;
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var PureRenderMixin = __webpack_require__(186);
-	var ReactTransitionGroup = __webpack_require__(197);
-	var StylePropable = __webpack_require__(160);
-	var Dom = __webpack_require__(207);
-	var ImmutabilityHelper = __webpack_require__(161);
-	var CircleRipple = __webpack_require__(208);
+	var ReactDOM = __webpack_require__(159);
+	var PureRenderMixin = __webpack_require__(188);
+	var ReactTransitionGroup = __webpack_require__(198);
+	var StylePropable = __webpack_require__(162);
+	var Dom = __webpack_require__(208);
+	var ImmutabilityHelper = __webpack_require__(163);
+	var CircleRipple = __webpack_require__(209);
 
 	var TouchRipple = React.createClass({
 	  displayName: 'TouchRipple',
@@ -24078,7 +24200,7 @@
 	module.exports = TouchRipple;
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24155,7 +24277,7 @@
 	};
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24165,12 +24287,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var PureRenderMixin = __webpack_require__(186);
-	var StylePropable = __webpack_require__(160);
-	var AutoPrefix = __webpack_require__(165);
-	var Transitions = __webpack_require__(183);
-	var Colors = __webpack_require__(179);
+	var ReactDOM = __webpack_require__(159);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var AutoPrefix = __webpack_require__(167);
+	var Transitions = __webpack_require__(185);
+	var Colors = __webpack_require__(181);
 
 	var CircleRipple = React.createClass({
 	  displayName: 'CircleRipple',
@@ -24260,7 +24382,7 @@
 	module.exports = CircleRipple;
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24270,10 +24392,10 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var FontIcon = React.createClass({
 	  displayName: 'FontIcon',
@@ -24367,7 +24489,7 @@
 	module.exports = FontIcon;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24377,12 +24499,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
-	var Colors = __webpack_require__(179);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var ReactDOM = __webpack_require__(159);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
+	var Colors = __webpack_require__(181);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var Tooltip = React.createClass({
 	  displayName: 'Tooltip',
@@ -24544,14 +24666,14 @@
 	module.exports = Tooltip;
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var PureRenderMixin = __webpack_require__(186);
-	var SvgIcon = __webpack_require__(212);
+	var PureRenderMixin = __webpack_require__(188);
+	var SvgIcon = __webpack_require__(213);
 
 	var NavigationMenu = React.createClass({
 	  displayName: 'NavigationMenu',
@@ -24571,7 +24693,7 @@
 	module.exports = NavigationMenu;
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24581,10 +24703,10 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var SvgIcon = React.createClass({
 	  displayName: 'SvgIcon',
@@ -24691,7 +24813,7 @@
 	module.exports = SvgIcon;
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24701,12 +24823,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var PureRenderMixin = __webpack_require__(186);
-	var StylePropable = __webpack_require__(160);
-	var PropTypes = __webpack_require__(184);
-	var Transitions = __webpack_require__(183);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var PureRenderMixin = __webpack_require__(188);
+	var StylePropable = __webpack_require__(162);
+	var PropTypes = __webpack_require__(186);
+	var Transitions = __webpack_require__(185);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var Paper = React.createClass({
 	  displayName: 'Paper',
@@ -24797,17 +24919,6 @@
 	module.exports = Paper;
 
 /***/ },
-/* 214 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = [{ "Id": 1, "Title": "Відновлення острова Малий Татару", "Latitude": 45.350166, "Longtitude": 29.001091, "ProblemTypes_Id": 4, "Status": 1, "Date": "2014-02-18T14:15:51.000Z" }, { "Id": 2, "Title": "Китайський мега-порт", "Latitude": 45.125866, "Longtitude": 33.607864, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-19T19:00:50.000Z" }, { "Id": 3, "Title": "Сабарівський ліс", "Latitude": 49.190342, "Longtitude": 28.449955, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-02-26T19:09:47.000Z" }, { "Id": 4, "Title": "Спасите Древний могучий Днепр!", "Latitude": 48.487488, "Longtitude": 35.068359, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-26T23:45:04.000Z" }, { "Id": 5, "Title": "Загрязнение Днепра", "Latitude": 46.8326, "Longtitude": 33.416462, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-27T22:24:53.000Z" }, { "Id": 6, "Title": "Знищення гніздівель ластівок, Чубинське, Бориспільський район", "Latitude": 50.387123, "Longtitude": 30.853321, "ProblemTypes_Id": 5, "Status": 1, "Date": "2014-02-18T22:54:51.000Z" }, { "Id": 7, "Title": "Лиман", "Latitude": 46.571136, "Longtitude": 30.750046, "ProblemTypes_Id": 4, "Status": 1, "Date": "2014-02-27T22:19:56.000Z" }, { "Id": 8, "Title": "забор", "Latitude": 50.451805, "Longtitude": 30.670565, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-02-28T01:16:08.000Z" }, { "Id": 9, "Title": "Необхідність збереження пам’ятки природи місцевого значення «Тунель кохання», с. Клевань, Рівненський район Рівненської області.", "Latitude": 50.753944, "Longtitude": 26.013908, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-02-28T01:29:48.000Z" }, { "Id": 10, "Title": "Необхідність створення заказника для дельфінів біля мису Айя, Сарич та узбережжя Балаклави. ", "Latitude": 44.479362, "Longtitude": 33.600655, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-02-28T01:37:27.000Z" }, { "Id": 11, "Title": "Місцевість дуже забруднена, місто потерпає від сміття", "Latitude": 47.654289, "Longtitude": 34.598694, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-02-28T04:15:33.000Z" }, { "Id": 12, "Title": "с.Пожарки", "Latitude": 49.951221, "Longtitude": 30.355225, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T03:25:39.000Z" }, { "Id": 13, "Title": "Сміттєзвалища ", "Latitude": 50.973751, "Longtitude": 25.228537, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T03:35:18.000Z" }, { "Id": 14, "Title": "Знакає річка", "Latitude": 48.711353, "Longtitude": 35.963142, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-03T18:09:47.000Z" }, { "Id": 18, "Title": "ГМО", "Latitude": 50.729504, "Longtitude": 31.478577, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-03T19:39:08.000Z" }, { "Id": 19, "Title": "Сміттєзвалище на Гмирі 6", "Latitude": 50.392899, "Longtitude": 30.626213, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T21:15:34.000Z" }, { "Id": 20, "Title": "Сміттєзвалище", "Latitude": 50.290546, "Longtitude": 30.79648, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-06T23:59:10.000Z" }, { "Id": 21, "Title": "Загроза втрати біорізноманіття акваторії навколо Тарханкутського півострова", "Latitude": 45.414238, "Longtitude": 32.491722, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-07T02:20:47.000Z" }, { "Id": 22, "Title": "НЕЗАКОНЕ СМІТТЄЗВАЛИЩЕ ОРГАНІЗОВАНЕ СІЛЬСЬКОЮ РАДОЮ", "Latitude": 50.619884, "Longtitude": 30.910093, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-11T17:28:18.000Z" }, { "Id": 23, "Title": "мусор в Одессе", "Latitude": 46.483265, "Longtitude": 30.81665, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-13T06:43:36.000Z" }, { "Id": 24, "Title": "загрязнение воздуха", "Latitude": 46.452995, "Longtitude": 30.926514, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-14T01:20:55.000Z" }, { "Id": 25, "Title": "Викид сажі та зниження ставків пром. викидами", "Latitude": 49.82093, "Longtitude": 30.433931, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-14T21:10:33.000Z" }, { "Id": 26, "Title": "Проблема повiтря", "Latitude": 47.798397, "Longtitude": 33.365479, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T19:24:58.000Z" }, { "Id": 27, "Title": "Пал травы", "Latitude": 58.101105, "Longtitude": 30.596924, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T20:22:13.000Z" }, { "Id": 28, "Title": "Забруднення ґрунтових вод", "Latitude": 46.830135, "Longtitude": 32.947998, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T20:23:07.000Z" }, { "Id": 29, "Title": "стихійні сміттєзвалища", "Latitude": 48.742039, "Longtitude": 22.509613, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-17T20:39:06.000Z" }, { "Id": 30, "Title": "засорение реки", "Latitude": 50.134663, "Longtitude": 28.685303, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-17T22:21:55.000Z" }, { "Id": 31, "Title": "Загальна системна проблема із сміттям", "Latitude": 50.42952, "Longtitude": 30.541992, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T12:14:00.000Z" }, { "Id": 32, "Title": "Сміттєзвалище біля лісу", "Latitude": 49.903675, "Longtitude": 31.231663, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T12:14:27.000Z" }, { "Id": 33, "Title": "Сміттєзвалища на \"Коса на Победе\"", "Latitude": 48.417751, "Longtitude": 35.074734, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T15:14:05.000Z" }, { "Id": 34, "Title": "сплошная вырубка леса ", "Latitude": 50.160378, "Longtitude": 29.982183, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-18T18:21:22.000Z" }, { "Id": 36, "Title": "Сміттєзвалище. Забруднення...", "Latitude": 50.398918, "Longtitude": 30.413074, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T18:36:04.000Z" }, { "Id": 37, "Title": "Постійна зміна клімату, вирубка лісів, смітник", "Latitude": 50.164585, "Longtitude": 30.358658, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T19:51:48.000Z" }, { "Id": 39, "Title": "Стройка", "Latitude": 50.54311, "Longtitude": 30.239182, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-18T20:54:31.000Z" }, { "Id": 40, "Title": "Смітник біля будинку", "Latitude": 48.603317, "Longtitude": 22.302074, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T21:35:47.000Z" }, { "Id": 41, "Title": "Незаконный вывоз песка", "Latitude": 50.399807, "Longtitude": 30.598898, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-18T22:36:33.000Z" }, { "Id": 42, "Title": "Загрязнение родникового водоёма", "Latitude": 50.672203, "Longtitude": 30.269222, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-19T03:41:47.000Z" }, { "Id": 43, "Title": "Сміттєзвалищє", "Latitude": 48.815414, "Longtitude": 29.377388, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-19T11:04:12.000Z" }, { "Id": 44, "Title": "Брудно", "Latitude": 49.58955, "Longtitude": 34.551254, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-20T00:09:36.000Z" }, { "Id": 45, "Title": "Забруднені водойоми та береги річок", "Latitude": 49.073868, "Longtitude": 33.417664, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-19T17:06:54.000Z" }, { "Id": 46, "Title": "Сміттєзвалище", "Latitude": 50.273788, "Longtitude": 28.696827, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-20T12:08:28.000Z" }, { "Id": 48, "Title": "незаконне будівництво", "Latitude": 48.514507, "Longtitude": 35.054295, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T10:22:50.000Z" }, { "Id": 49, "Title": "Переповнення відходами людського відпочинку", "Latitude": 50.528706, "Longtitude": 30.532335, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T15:04:22.000Z" }, { "Id": 50, "Title": "Як зробити місто чистим", "Latitude": 48.297813, "Longtitude": 38.023682, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T23:50:14.000Z" }, { "Id": 51, "Title": "Зробити водойми екологічночистим місцем відпочинку", "Latitude": 48.327038, "Longtitude": 38.023682, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T00:16:53.000Z" }, { "Id": 52, "Title": "незаконная стройка", "Latitude": 56.903156, "Longtitude": 60.721321, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T00:31:53.000Z" }, { "Id": 53, "Title": "Вирубка дерев", "Latitude": 50.00774, "Longtitude": 36.24115, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T01:48:56.000Z" }, { "Id": 54, "Title": "Завод з токсичними викидами в житловій зоні", "Latitude": 48.442959, "Longtitude": 25.571934, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T18:12:01.000Z" }, { "Id": 55, "Title": "Засмічення Вовчинецьких гір побутовим сміттям", "Latitude": 48.958569, "Longtitude": 24.750105, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T18:15:11.000Z" }, { "Id": 56, "Title": "Пересыхание цепи озер в Березовой Рудке", "Latitude": 50.315105, "Longtitude": 32.232643, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T19:34:09.000Z" }, { "Id": 57, "Title": "Трасса здоровья и пляжи", "Latitude": 46.458202, "Longtitude": 30.760689, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T20:09:09.000Z" }, { "Id": 58, "Title": "Свалка в карьере ракушечника", "Latitude": 46.625599, "Longtitude": 30.906193, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:10:04.000Z" }, { "Id": 59, "Title": "Порушення підприємством санітарно-екологічних норм", "Latitude": 50.444881, "Longtitude": 29.816818, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:13:06.000Z" }, { "Id": 60, "Title": "Высыхает лиман", "Latitude": 46.576092, "Longtitude": 30.896473, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:13:44.000Z" }, { "Id": 61, "Title": "незаконні сміттезвалища", "Latitude": 49.993614, "Longtitude": 36.199951, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:15:14.000Z" }, { "Id": 62, "Title": "Загрязнение Черного моря", "Latitude": 46.470497, "Longtitude": 30.77013, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:16:29.000Z" }, { "Id": 63, "Title": "Смітник у зоні відпочинку", "Latitude": 48.713165, "Longtitude": 29.159775, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:16:57.000Z" }, { "Id": 64, "Title": "Незаконный вылов рыбы", "Latitude": 46.577152, "Longtitude": 30.929817, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T20:20:39.000Z" }, { "Id": 65, "Title": "Питьевая вода", "Latitude": 46.479481, "Longtitude": 30.7164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:21:24.000Z" }, { "Id": 66, "Title": "экологически опасная свалка", "Latitude": 48.65786, "Longtitude": 35.22131, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:25:12.000Z" }, { "Id": 67, "Title": "Заьруднення повітря", "Latitude": 50.243355, "Longtitude": 28.738842, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:25:31.000Z" }, { "Id": 68, "Title": "Сохранение и развитие зеленых насаждений", "Latitude": 46.459621, "Longtitude": 30.73494, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-26T20:26:07.000Z" }, { "Id": 69, "Title": "\"Сирітська хатка\" на березі Південного Бугу", "Latitude": 49.518551, "Longtitude": 28.023504, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T20:35:05.000Z" }, { "Id": 71, "Title": "сміттезвалища і сміття взовж річкі Ірпінь", "Latitude": 50.738132, "Longtitude": 30.362991, "ProblemTypes_Id": 2, "Status": 1, "Date": "2014-03-26T20:39:53.000Z" }, { "Id": 72, "Title": "Автозаправка напроти дев\\'ятиповерхового будинку", "Latitude": 48.081783, "Longtitude": 38.076344, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:43:56.000Z" }, { "Id": 73, "Title": "Загрязнение местности и атмосферы", "Latitude": 48.48362, "Longtitude": 32.305771, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:00:23.000Z" }, { "Id": 74, "Title": "Забруднення території", "Latitude": 51.312832, "Longtitude": 26.593416, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:11:29.000Z" }, { "Id": 75, "Title": "Мусорка", "Latitude": 48.369331, "Longtitude": 35.114708, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:15:06.000Z" }, { "Id": 76, "Title": "Незаконный вылов рыбы, раков", "Latitude": 46.505424, "Longtitude": 30.049454, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T21:47:51.000Z" }, { "Id": 79, "Title": "не чистят", "Latitude": 50.457287, "Longtitude": 30.334539, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T22:28:10.000Z" }, { "Id": 80, "Title": "выбросы в атмосферу загрязнённого воздуха с металлургических комбинатов и нехватка кислорода в воэдухе", "Latitude": 47.077602, "Longtitude": 37.545776, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T22:45:01.000Z" }, { "Id": 81, "Title": "Не екологiчно чистi придприэмства якi забруднюють навколишнню середу", "Latitude": 48.290504, "Longtitude": 38.038788, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T23:04:12.000Z" }, { "Id": 82, "Title": "Незаконне полювання в околицях с. Липовиця", "Latitude": 48.767052, "Longtitude": 24.042892, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T23:20:33.000Z" }, { "Id": 83, "Title": "Греблі", "Latitude": 49.61071, "Longtitude": 34.562988, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T23:22:43.000Z" }, { "Id": 84, "Title": "Велика кількість сміття", "Latitude": 50.001476, "Longtitude": 36.280258, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T23:59:57.000Z" }, { "Id": 85, "Title": "Міське сміттєзвалище", "Latitude": 50.393143, "Longtitude": 24.208099, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T00:06:30.000Z" }, { "Id": 86, "Title": "Браконьерство", "Latitude": 51.413448, "Longtitude": 30.819054, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T00:14:12.000Z" }, { "Id": 88, "Title": "Истребление рыбы \"электроудочкой\".", "Latitude": 50.573318, "Longtitude": 33.344879, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T01:33:02.000Z" }, { "Id": 89, "Title": "Вирубка лісу.", "Latitude": 48.471329, "Longtitude": 27.837683, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T01:48:47.000Z" }, { "Id": 90, "Title": "Радіаційне забруднення - База \"С\"", "Latitude": 48.429314, "Longtitude": 34.765205, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T02:34:45.000Z" }, { "Id": 91, "Title": "Переповнення відходами людського відпочинку", "Latitude": 50.555897, "Longtitude": 30.538923, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T02:55:33.000Z" }, { "Id": 93, "Title": "Сміттєзвалище переповнене.", "Latitude": 50.236591, "Longtitude": 30.524874, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T11:03:44.000Z" }, { "Id": 94, "Title": "Забруднення води", "Latitude": 47.822563, "Longtitude": 35.144802, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:11:51.000Z" }, { "Id": 95, "Title": "Забруднення повітря", "Latitude": 47.853718, "Longtitude": 35.137711, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T11:15:51.000Z" }, { "Id": 96, "Title": "Незаконний вилов риби", "Latitude": 49.552834, "Longtitude": 32.76741, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T11:31:38.000Z" }, { "Id": 97, "Title": "Енергетика", "Latitude": 50.051533, "Longtitude": 36.207001, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T11:35:11.000Z" }, { "Id": 98, "Title": "Зливання стычних вод у р. Хорол", "Latitude": 49.970848, "Longtitude": 33.608086, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:40:13.000Z" }, { "Id": 99, "Title": "смiття", "Latitude": 46.422714, "Longtitude": 30.761719, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T11:48:03.000Z" }, { "Id": 101, "Title": "Уникальные водоемы.", "Latitude": 49.786804, "Longtitude": 30.938915, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:52:00.000Z" }, { "Id": 102, "Title": "Сміттезвалище у лісі", "Latitude": 50.45126, "Longtitude": 30.341578, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T11:53:39.000Z" }, { "Id": 104, "Title": "Забруднене озеро", "Latitude": 50.410393, "Longtitude": 30.409212, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T12:10:58.000Z" }, { "Id": 105, "Title": "Сміттєзвалище", "Latitude": 50.418579, "Longtitude": 25.715431, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T12:12:20.000Z" }, { "Id": 107, "Title": "Незаконне вивезення сміття ", "Latitude": 50.515556, "Longtitude": 30.739853, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T13:45:43.000Z" }, { "Id": 108, "Title": "Незаконна вирубка лісів", "Latitude": 50.51696, "Longtitude": 30.745207, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:49:10.000Z" }, { "Id": 109, "Title": "Вирубка дерев біля траси Київ - Чернігів", "Latitude": 50.521263, "Longtitude": 30.788424, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:51:14.000Z" }, { "Id": 110, "Title": "Вирубка лісів", "Latitude": 50.518311, "Longtitude": 30.752041, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:51:35.000Z" }, { "Id": 112, "Title": "Забруднене озеро", "Latitude": 50.50214, "Longtitude": 30.752846, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:03:00.000Z" }, { "Id": 113, "Title": "Вирубка дерев", "Latitude": 50.523415, "Longtitude": 30.735209, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T14:08:35.000Z" }, { "Id": 114, "Title": "Будівництво Біланівського ГЗК", "Latitude": 49.165092, "Longtitude": 33.663483, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-27T14:13:58.000Z" }, { "Id": 116, "Title": "Попадання неочищених стічних вод в річку", "Latitude": 49.012878, "Longtitude": 24.73443, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:23:08.000Z" }, { "Id": 117, "Title": "Незаконний вилов риби", "Latitude": 49.387333, "Longtitude": 33.803204, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T14:25:51.000Z" }, { "Id": 118, "Title": "Сміттєзвалище", "Latitude": 50.531666, "Longtitude": 30.22267, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T14:28:58.000Z" }, { "Id": 119, "Title": "Забруденний ставок в Козельщині", "Latitude": 49.220345, "Longtitude": 33.847752, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:32:59.000Z" }, { "Id": 120, "Title": "Екологічний хаос", "Latitude": 50.304977, "Longtitude": 28.641491, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T14:53:02.000Z" }, { "Id": 121, "Title": "Остров из мусора", "Latitude": 48.476208, "Longtitude": 35.139729, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:57:50.000Z" }, { "Id": 124, "Title": "ставок Крива Руда", "Latitude": 49.595524, "Longtitude": 33.206306, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T15:12:45.000Z" }, { "Id": 125, "Title": "Жомова яма", "Latitude": 49.600002, "Longtitude": 33.195141, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-27T15:17:19.000Z" }, { "Id": 126, "Title": "Незаконне сміттєзвалище", "Latitude": 49.588081, "Longtitude": 33.215591, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T15:22:22.000Z" }, { "Id": 127, "Title": "Загрязнение воздуха предприятием  \"АрселорМиталл Кривой Рог\"", "Latitude": 47.871914, "Longtitude": 33.392773, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T16:10:18.000Z" }, { "Id": 128, "Title": "Проблема вивезення сміття та культури людей", "Latitude": 50.357262, "Longtitude": 30.438326, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T16:18:31.000Z" }, { "Id": 129, "Title": "Вирубка лісу", "Latitude": 48.168606, "Longtitude": 26.007471, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T16:38:44.000Z" }, { "Id": 130, "Title": "Звалище будівельного сміття ", "Latitude": 47.824783, "Longtitude": 35.050716, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T16:44:55.000Z" }, { "Id": 131, "Title": "Очисні споруди", "Latitude": 48.794651, "Longtitude": 26.034164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T18:22:54.000Z" }, { "Id": 132, "Title": "Бездомные собаки", "Latitude": 50.494171, "Longtitude": 30.447889, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T18:48:52.000Z" }, { "Id": 133, "Title": "Забруднення ставків.", "Latitude": 49.579945, "Longtitude": 34.500214, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:24:37.000Z" }, { "Id": 134, "Title": "Забруднена водойма", "Latitude": 50.419102, "Longtitude": 30.639389, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:42:40.000Z" }, { "Id": 135, "Title": "Проблема питної води", "Latitude": 49.087864, "Longtitude": 33.70052, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:44:46.000Z" }, { "Id": 136, "Title": "міське сміттєзвалище", "Latitude": 49.916622, "Longtitude": 28.558315, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T20:58:50.000Z" }, { "Id": 137, "Title": "Забруднення повытря", "Latitude": 47.873856, "Longtitude": 35.167503, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T22:40:59.000Z" }, { "Id": 138, "Title": "Экологическая культура жителей города", "Latitude": 48.312428, "Longtitude": 38.023682, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T22:56:15.000Z" }, { "Id": 139, "Title": "Сміттєзвалища на \"Балка\"", "Latitude": 48.410915, "Longtitude": 35.070831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T23:41:30.000Z" }, { "Id": 140, "Title": " горит свалка ТБО", "Latitude": 46.80106, "Longtitude": 36.711781, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T00:34:53.000Z" }, { "Id": 141, "Title": "Добыча сланцевого газа", "Latitude": 48.553795, "Longtitude": 37.288971, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-28T01:06:19.000Z" }, { "Id": 142, "Title": "Хранилище радиоактивных отходов «Щербаковское»", "Latitude": 48.310146, "Longtitude": 33.488388, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-28T04:05:32.000Z" }, { "Id": 143, "Title": "Грязное старое русло реки Лугань", "Latitude": 48.587788, "Longtitude": 39.3372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-28T12:14:04.000Z" }, { "Id": 144, "Title": "Загрязненная речка и прилегающая территория ", "Latitude": 48.587906, "Longtitude": 39.331978, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-28T12:17:10.000Z" }, { "Id": 145, "Title": "Экологическая культура жителей города", "Latitude": 48.567265, "Longtitude": 39.405106, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-28T12:28:52.000Z" }, { "Id": 146, "Title": "Викид шкідливих речовин у повітря - застарілий сміттепереробний завод у межах міста Києва", "Latitude": 50.398178, "Longtitude": 30.673183, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:43:00.000Z" }, { "Id": 147, "Title": "Свалка в Тоннельной  балке ", "Latitude": 48.413708, "Longtitude": 35.03231, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:55:49.000Z" }, { "Id": 148, "Title": "Свалка в Тоннельной  балке ", "Latitude": 48.414276, "Longtitude": 35.035831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:59:43.000Z" }, { "Id": 149, "Title": "Вирубка невеликого лісу ", "Latitude": 48.394905, "Longtitude": 35.046021, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-28T17:19:41.000Z" }, { "Id": 150, "Title": "Жахливі руїни дому ветеранів", "Latitude": 47.110561, "Longtitude": 37.679287, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T00:04:24.000Z" }, { "Id": 152, "Title": "проблема днепровских склонов", "Latitude": 50.44865, "Longtitude": 30.541391, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-29T06:13:47.000Z" }, { "Id": 153, "Title": "Сміттєзвалище ", "Latitude": 47.127163, "Longtitude": 37.673534, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T11:11:59.000Z" }, { "Id": 154, "Title": "загрязнение прибрежных морских вод", "Latitude": 47.088825, "Longtitude": 37.545776, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-29T11:18:21.000Z" }, { "Id": 155, "Title": "Огромная мусорка", "Latitude": 47.135498, "Longtitude": 37.631607, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T14:24:00.000Z" }, { "Id": 156, "Title": "Проблема разрушенных дамб пресноводных ставков", "Latitude": 45.321255, "Longtitude": 36.430664, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-29T17:05:36.000Z" }, { "Id": 158, "Title": "Слив с заводского отстойника непосредственно в море", "Latitude": 47.086956, "Longtitude": 37.622597, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-29T22:14:27.000Z" }, { "Id": 159, "Title": "Сміття,забруднення повітря", "Latitude": 48.719959, "Longtitude": 37.573242, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-30T00:01:18.000Z" }, { "Id": 160, "Title": "Стихійне сміттєзвалище", "Latitude": 50.532307, "Longtitude": 30.497831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-30T03:00:19.000Z" }, { "Id": 161, "Title": "Екологічне забруднення місцевості на заповідній території Апостолівського району, Дніпропетровської області", "Latitude": 47.66608, "Longtitude": 34.0662, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-30T07:24:07.000Z" }, { "Id": 163, "Title": "Дышим хлором , берилием , бензолом , натрийдихлофокперит , и вообще проблема уже 115 лет", "Latitude": 47.101448, "Longtitude": 37.601311, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-30T11:58:28.000Z" }, { "Id": 164, "Title": "Озеро Снітинка біля Фастова", "Latitude": 50.106819, "Longtitude": 29.96727, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-04-02T17:22:12.000Z" }, { "Id": 165, "Title": "Сміття", "Latitude": 51.197445, "Longtitude": 24.703552, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-03T00:48:29.000Z" }, { "Id": 166, "Title": "Вирубка лісу", "Latitude": 48.695042, "Longtitude": 22.40181, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-06T17:00:38.000Z" }, { "Id": 167, "Title": "Загрязнена річка", "Latitude": 49.413094, "Longtitude": 31.260611, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-04-06T22:14:31.000Z" }, { "Id": 168, "Title": "Сміттєзвалище біля джерела води", "Latitude": 50.456192, "Longtitude": 28.620382, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-08T21:52:40.000Z" }, { "Id": 169, "Title": "Срублено здоровое дерево", "Latitude": 46.488506, "Longtitude": 30.677847, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-09T21:31:42.000Z" }, { "Id": 170, "Title": "Слив канализации в озеро", "Latitude": 46.505081, "Longtitude": 30.691099, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-04-09T21:38:37.000Z" }, { "Id": 171, "Title": "Сміттєзвалище", "Latitude": 49.391499, "Longtitude": 24.99011, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-10T00:19:48.000Z" }, { "Id": 172, "Title": "Сміттєзвалище", "Latitude": 49.325676, "Longtitude": 24.992434, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-11T13:26:53.000Z" }, { "Id": 173, "Title": "Грибовицьке сміттєзвалище", "Latitude": 49.902538, "Longtitude": 24.036156, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-12T17:55:59.000Z" }, { "Id": 174, "Title": "Стихійні сміттєзвалища", "Latitude": 50.064194, "Longtitude": 25.153198, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-14T19:04:18.000Z" }, { "Id": 175, "Title": "Бездомные животные", "Latitude": 46.972755, "Longtitude": 32.040253, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-04-18T18:24:46.000Z" }, { "Id": 176, "Title": "Парк завалений сміттям, яке періодично залишають відпочиваючі", "Latitude": 50.466274, "Longtitude": 30.607437, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-24T17:55:04.000Z" }, { "Id": 177, "Title": "Стихійні звалища на Вінниччині, проблема утилізації відходів", "Latitude": 48.381794, "Longtitude": 28.857994, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-24T18:06:52.000Z" }, { "Id": 178, "Title": "Вирубка лісу.", "Latitude": 48.482479, "Longtitude": 27.864418, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-25T20:21:46.000Z" }, { "Id": 180, "Title": "утилізація побутових відходів", "Latitude": -67.609222, "Longtitude": 69.609375, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-05-14T18:46:01.000Z" }, { "Id": 181, "Title": "Повсеместная рубка леса вокруг Харькова", "Latitude": 50.01535, "Longtitude": 36.161926, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-05-17T00:46:37.000Z" }, { "Id": 182, "Title": "Истребление Байбака(сурка)", "Latitude": 49.766743, "Longtitude": 37.250435, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-05-17T02:03:48.000Z" }, { "Id": 183, "Title": "Забруднена водойма", "Latitude": 49.575104, "Longtitude": 32.092094, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-17T11:40:22.000Z" }, { "Id": 184, "Title": "Забруднене озеро", "Latitude": 50.397739, "Longtitude": 30.431957, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-18T12:25:47.000Z" }, { "Id": 185, "Title": "Забруднення водойм", "Latitude": 50.078297, "Longtitude": 25.161438, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-21T17:07:08.000Z" }, { "Id": 186, "Title": "Стихійне сміттєзвалище", "Latitude": 48.449131, "Longtitude": 25.585999, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-05-25T02:03:54.000Z" }, { "Id": 187, "Title": "Стврено сміттєзвалище на місці водовідводного каналу", "Latitude": 50.552013, "Longtitude": 30.111036, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-05-25T10:43:42.000Z" }, { "Id": 188, "Title": "Річка", "Latitude": 49.402039, "Longtitude": 31.25164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-27T01:10:55.000Z" }, { "Id": 189, "Title": "Проблема", "Latitude": 45.089035, "Longtitude": -60.46875, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-06-04T17:01:40.000Z" }, { "Id": 193, "Title": "Мусор под домом", "Latitude": 48.429199, "Longtitude": 34.714737, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-04T13:39:23.000Z" }, { "Id": 195, "Title": "Вирубують ліс", "Latitude": 50.493664, "Longtitude": 29.998512, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-05T13:08:59.000Z" }, { "Id": 196, "Title": "Незаконний вивіз піска. ", "Latitude": 50.531517, "Longtitude": 30.581776, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-05T22:32:34.000Z" }, { "Id": 197, "Title": "Спалюють листя", "Latitude": 50.022728, "Longtitude": 36.354061, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-06T13:56:57.000Z" }, { "Id": 199, "Title": "Шкідливі вихлопні гази ДВЗ", "Latitude": 48.452374, "Longtitude": 35.03952, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-07T11:08:54.000Z" }, { "Id": 200, "Title": "Cкупчення мусору біля Водограю", "Latitude": 49.353195, "Longtitude": 23.240461, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-07T13:35:00.000Z" }, { "Id": 201, "Title": "Потрібна карта для розміщення точок збору пластикових пляшок", "Latitude": 50.398014, "Longtitude": 30.547485, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-07T14:29:24.000Z" }, { "Id": 202, "Title": "Сміттєзвалище", "Latitude": 49.455963, "Longtitude": 26.97504, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-08T14:52:49.000Z" }, { "Id": 208, "Title": "Вывозят песок с пляжа ", "Latitude": 45.267879, "Longtitude": 33.076057, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-11-12T21:46:34.000Z" }, { "Id": 209, "Title": "Сміттєзвалище 5 метрів від дороги", "Latitude": 48.430794, "Longtitude": 25.720282, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-20T21:43:47.000Z" }, { "Id": 210, "Title": "Несанкціоноване звалища побутових відходів на території села Наварія", "Latitude": 49.742092, "Longtitude": 23.90535, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-24T14:19:50.000Z" }, { "Id": 212, "Title": "Незаконна вирубка лісу", "Latitude": 50.704231, "Longtitude": 29.53228, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:13:11.000Z" }, { "Id": 213, "Title": "Незаконний злив відходів в водойму .", "Latitude": 50.700264, "Longtitude": 29.521809, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T11:22:47.000Z" }, { "Id": 214, "Title": "Знищення лісових угідь", "Latitude": 50.564484, "Longtitude": 30.223389, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:33:16.000Z" }, { "Id": 215, "Title": " Свалка во дворе постоянно горит", "Latitude": 48.437386, "Longtitude": 35.013729, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T11:34:50.000Z" }, { "Id": 216, "Title": "Вирубка лісу", "Latitude": 50.509499, "Longtitude": 29.443359, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:42:28.000Z" }, { "Id": 217, "Title": "осушение водоемов", "Latitude": 49.963863, "Longtitude": 29.739389, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T11:44:35.000Z" }, { "Id": 218, "Title": "Сміттєзвалище прямо вздовж дороги", "Latitude": 50.432007, "Longtitude": 30.616751, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:11:36.000Z" }, { "Id": 219, "Title": "Мусор на дороге, и по всей улице", "Latitude": 50.505238, "Longtitude": 30.619713, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:14:33.000Z" }, { "Id": 220, "Title": "Cміття, дуже багато сміття!", "Latitude": 49.438217, "Longtitude": 32.061882, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:24:23.000Z" }, { "Id": 221, "Title": "Забруднення повітря ", "Latitude": 49.206493, "Longtitude": 24.677696, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-25T12:56:01.000Z" }, { "Id": 223, "Title": "Дуже багато сміття в лісі, яке залишають відпочиваючі", "Latitude": 50.714504, "Longtitude": 30.528603, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T13:47:46.000Z" }, { "Id": 224, "Title": "свалка муссора", "Latitude": 50.411121, "Longtitude": 30.61113, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T14:55:39.000Z" }, { "Id": 226, "Title": "вирубка лісу", "Latitude": 50.366596, "Longtitude": 30.044432, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T15:24:52.000Z" }, { "Id": 227, "Title": "Сміттєспалювальний майданчик, який горить і димить весь час. ", "Latitude": 50.409828, "Longtitude": 30.357285, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T16:27:32.000Z" }, { "Id": 229, "Title": "Вирубки лісу", "Latitude": 50.839767, "Longtitude": 30.842743, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T17:41:13.000Z" }, { "Id": 230, "Title": "Звалище", "Latitude": 50.701786, "Longtitude": 29.642744, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T18:15:37.000Z" }, { "Id": 234, "Title": "Відстійники стічних промислових вод, стихійне сміттєзвалище", "Latitude": 49.802826, "Longtitude": 24.057558, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T20:58:45.000Z" }, { "Id": 235, "Title": "Видобуток уранових руд", "Latitude": 48.436947, "Longtitude": 32.329674, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-25T22:04:28.000Z" }, { "Id": 241, "Title": "Екологічний стан річки Інгул в межах міста Кіровограда", "Latitude": 48.504822, "Longtitude": 32.262169, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-27T08:35:45.000Z" }, { "Id": 243, "Title": "Вырубка и застройка уникального лесного массива в черте города", "Latitude": 50.05846, "Longtitude": 36.241577, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-27T10:54:11.000Z" }, { "Id": 244, "Title": "Дуже засмічений і недоглянутий парк", "Latitude": 49.942108, "Longtitude": 36.393845, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-27T17:10:31.000Z" }, { "Id": 245, "Title": "Забруднення русла річки Червона внаслідок ерозії грунтів", "Latitude": 50.076969, "Longtitude": 37.627171, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-29T13:34:44.000Z" }, { "Id": 247, "Title": "Листья", "Latitude": 50.020809, "Longtitude": 36.246964, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-01T17:40:15.000Z" }, { "Id": 248, "Title": "Забрудення навколишнього середовища, води,повітря", "Latitude": 48.736774, "Longtitude": 22.486439, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-02T13:43:55.000Z" }, { "Id": 250, "Title": "Інтенсивна вирубка лісу", "Latitude": 49.891537, "Longtitude": 24.328966, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-02T22:37:38.000Z" }, { "Id": 251, "Title": "Незаконная свалка", "Latitude": 50.353951, "Longtitude": 30.348186, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-03T00:00:57.000Z" }, { "Id": 252, "Title": " \"Утилизационный  комплекс\" ( особо опасные отходы) в черте города", "Latitude": 50.778156, "Longtitude": 28.355713, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-04T21:02:18.000Z" }, { "Id": 253, "Title": "Отравление воздуха вредными выбросами", "Latitude": 46.514977, "Longtitude": 30.683891, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-05T15:50:00.000Z" }, { "Id": 255, "Title": "Незаконна забудова в селі Чубинське", "Latitude": 50.38588, "Longtitude": 30.839567, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-12-09T14:52:49.000Z" }, { "Id": 257, "Title": "Незаконне полювання на види диких тварин", "Latitude": 49.153645, "Longtitude": 23.03215, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-13T18:00:05.000Z" }, { "Id": 259, "Title": "Забруднене озеро.", "Latitude": 49.915165, "Longtitude": 24.220325, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T16:28:30.000Z" }, { "Id": 260, "Title": "Надзвичайно забруднене озеро", "Latitude": 49.913597, "Longtitude": 24.22464, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T16:34:20.000Z" }, { "Id": 261, "Title": "Незаконна вирубка лісів", "Latitude": 49.175644, "Longtitude": 22.844353, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-15T18:06:44.000Z" }, { "Id": 262, "Title": "тверді побутові відходи ", "Latitude": 49.668293, "Longtitude": 24.559937, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-15T18:16:27.000Z" }, { "Id": 263, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.337765, "Longtitude": 22.987003, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-15T21:26:32.000Z" }, { "Id": 264, "Title": "Забруднення поверхневих вод річки Дністер", "Latitude": 49.523426, "Longtitude": 23.194885, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T22:06:01.000Z" }, { "Id": 265, "Title": "Забруднення  поверхневих вод річки Дністер", "Latitude": 49.518078, "Longtitude": 23.192139, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T22:14:41.000Z" }, { "Id": 266, "Title": "Забруднення навколишнього довкілля.", "Latitude": 50.24369, "Longtitude": 23.595886, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T10:26:27.000Z" }, { "Id": 267, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.337315, "Longtitude": 22.989578, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T10:28:00.000Z" }, { "Id": 268, "Title": "забруднення атмосферне повітря", "Latitude": 49.783039, "Longtitude": 23.156433, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T10:39:29.000Z" }, { "Id": 269, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.336926, "Longtitude": 22.990007, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T10:54:06.000Z" }, { "Id": 270, "Title": "Очисні споруди", "Latitude": 49.867451, "Longtitude": 24.085787, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:15:18.000Z" }, { "Id": 271, "Title": "Забруднення та зникнення річки Свиня", "Latitude": 50.07653, "Longtitude": 23.955688, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:42:24.000Z" }, { "Id": 272, "Title": "Забруднення водойм", "Latitude": 49.865433, "Longtitude": 24.085207, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:49:16.000Z" }, { "Id": 274, "Title": "Забруднення водойми комунальним підприємством", "Latitude": 49.865517, "Longtitude": 24.083662, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:58:56.000Z" }, { "Id": 275, "Title": "Порушення сільськогосподарських угідь та утворення карстових западин", "Latitude": 49.940617, "Longtitude": 23.381653, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T15:50:21.000Z" }, { "Id": 276, "Title": "Забруднення сільськогосподарських угідь та утворення карстових проваль", "Latitude": 49.938847, "Longtitude": 23.395386, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T15:54:54.000Z" }, { "Id": 277, "Title": "Забруднення  поверхневих вод річки Дністер.", "Latitude": 49.504978, "Longtitude": 23.219948, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T19:17:22.000Z" }, { "Id": 278, "Title": "Забруднення річок", "Latitude": 48.5257, "Longtitude": 23.517609, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T20:02:36.000Z" }, { "Id": 279, "Title": "Незаконна вирубка лісів", "Latitude": 51.82729, "Longtitude": 25.716248, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-16T20:13:37.000Z" }, { "Id": 280, "Title": "Екологічні проблеми", "Latitude": 49.798996, "Longtitude": 23.343201, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T21:19:05.000Z" }, { "Id": 281, "Title": "Незаконне сміттєзвалище", "Latitude": 48.849045, "Longtitude": 23.45019, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-17T12:12:27.000Z" }, { "Id": 282, "Title": "Забруднення та зникнення річки Свиня.", "Latitude": 50.043304, "Longtitude": 23.999376, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T12:32:52.000Z" }, { "Id": 283, "Title": "Забруднення річки Турії", "Latitude": 51.235374, "Longtitude": 24.712372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:44:25.000Z" }, { "Id": 284, "Title": "Забруднення річки Турії", "Latitude": 51.235374, "Longtitude": 24.712372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:44:30.000Z" }, { "Id": 285, "Title": " Забруднення річки Турії.", "Latitude": 51.238762, "Longtitude": 24.727221, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:49:08.000Z" }, { "Id": 286, "Title": "браконьєрство", "Latitude": 49.370525, "Longtitude": 24.253693, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-17T23:03:14.000Z" }, { "Id": 287, "Title": " браконьєрство", "Latitude": 49.364769, "Longtitude": 24.243994, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-17T23:20:33.000Z" }, { "Id": 289, "Title": "бездомні собаки", "Latitude": 49.348389, "Longtitude": 23.506622, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-27T16:43:43.000Z" }, { "Id": 290, "Title": "Браконьерская вырубка леса", "Latitude": 50.048981, "Longtitude": 36.234627, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-01-05T14:41:02.000Z" }, { "Id": 291, "Title": "Эрозия почвы", "Latitude": 51.520668, "Longtitude": 31.333567, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-01-07T11:35:40.000Z" }, { "Id": 295, "Title": "Переповнений полігон твердих побутових відходів", "Latitude": 49.466339, "Longtitude": 31.860695, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-06T16:43:30.000Z" }, { "Id": 296, "Title": "Бездомные животные", "Latitude": 46.852207, "Longtitude": 35.366364, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-06T22:11:06.000Z" }, { "Id": 297, "Title": "Свалки мусора", "Latitude": 46.85865, "Longtitude": 35.322826, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-06T23:58:19.000Z" }, { "Id": 298, "Title": "Вырубка лесополосы", "Latitude": 46.853573, "Longtitude": 35.300701, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-07T00:02:08.000Z" }, { "Id": 299, "Title": "Неприятный запах от мясокомбината", "Latitude": 46.844608, "Longtitude": 35.344948, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-07T00:05:57.000Z" }, { "Id": 300, "Title": "Улицы утопают в грязи", "Latitude": 46.853325, "Longtitude": 35.325336, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-07T00:10:06.000Z" }, { "Id": 301, "Title": "Хотиславський кар`єр ", "Latitude": 51.698471, "Longtitude": 24.204683, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-03-10T19:37:22.000Z" }, { "Id": 302, "Title": "горить торф", "Latitude": 50.562904, "Longtitude": 30.294371, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-12T15:33:08.000Z" }, { "Id": 303, "Title": "масове спалення листя і сміття жителямии міста", "Latitude": 50.56078, "Longtitude": 30.227337, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-12T15:38:38.000Z" }, { "Id": 304, "Title": "масове спалювання листя", "Latitude": 50.517574, "Longtitude": 30.239353, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-12T15:40:55.000Z" }, { "Id": 305, "Title": "Неконтрольована масова вирубка лісу", "Latitude": 50.321793, "Longtitude": 29.049225, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-12T23:14:40.000Z" }, { "Id": 306, "Title": "Незаконне смітезвалище відходів каменеобробки", "Latitude": 50.248466, "Longtitude": 29.146214, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-12T23:19:00.000Z" }, { "Id": 307, "Title": "велика куча сміття", "Latitude": 49.750546, "Longtitude": 31.418028, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-13T00:45:16.000Z" }, { "Id": 309, "Title": "Сміттєзвалище побутових та будматеріалів", "Latitude": 47.940151, "Longtitude": 35.187321, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-16T08:54:20.000Z" }, { "Id": 310, "Title": "Осушення території, меліоративні роботи, поглиблення русла річки", "Latitude": 50.111771, "Longtitude": 25.089169, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T11:40:33.000Z" }, { "Id": 312, "Title": "меліоративні роботи, осушення території, знищення природного покриву", "Latitude": 50.106049, "Longtitude": 25.088482, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T12:02:17.000Z" }, { "Id": 313, "Title": "Знищення місця зростання меч-трави болотної (Червона книга України) та", "Latitude": 50.106682, "Longtitude": 25.113586, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T12:13:39.000Z" }, { "Id": 314, "Title": "Вирубка лісів для побудови гірськолижних трас", "Latitude": 48.092758, "Longtitude": 23.312988, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-23T17:21:52.000Z" }, { "Id": 315, "Title": "Сміттєзвалище (будматеріали та інше побутове сміття", "Latitude": 50.469021, "Longtitude": 30.342951, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-25T15:15:25.000Z" }, { "Id": 316, "Title": "Забруднення водоймища", "Latitude": 49.861828, "Longtitude": 24.015116, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-03-28T17:16:02.000Z" }, { "Id": 317, "Title": "Незаконне розміщення 17 тис. тон нафтових відходів (гудронів)", "Latitude": 49.455406, "Longtitude": 24.090786, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-04-15T20:56:26.000Z" }, { "Id": 318, "Title": "Небезпечені відходи сірчаного виробництва на території РДГХП \"Сірка\"", "Latitude": 49.456299, "Longtitude": 24.112072, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-04-15T21:56:38.000Z" }, { "Id": 319, "Title": "незаконна вирубка лісу", "Latitude": 51.003601, "Longtitude": 28.290825, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-04-21T02:29:14.000Z" }, { "Id": 320, "Title": "Масове вирубування лісу", "Latitude": 51.184509, "Longtitude": 27.332611, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-04-21T18:30:43.000Z" }, { "Id": 321, "Title": "сміттєзвалище м. Городок", "Latitude": 49.801434, "Longtitude": 23.739052, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-22T09:55:14.000Z" }, { "Id": 322, "Title": "Очень мало мусорок на улицах города Северодонецк.", "Latitude": 48.944828, "Longtitude": 38.487682, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-24T18:29:15.000Z" }, { "Id": 323, "Title": "Неконтрольоване скидання сміття в не призначеному для цього місці", "Latitude": 50.345078, "Longtitude": 30.517498, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-26T17:18:59.000Z" }, { "Id": 324, "Title": "засміченість лісу ", "Latitude": 49.817387, "Longtitude": 24.121513, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-27T17:53:11.000Z" }, { "Id": 325, "Title": "Несанкціоноване сміттєзвалище", "Latitude": 49.314213, "Longtitude": 24.994284, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-09T21:53:58.000Z" }, { "Id": 326, "Title": "Стихійне сміттєзвалище", "Latitude": 50.396481, "Longtitude": 30.365353, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-13T12:34:30.000Z" }, { "Id": 327, "Title": "Незаконна вирубка лісу", "Latitude": 49.899609, "Longtitude": 23.984528, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-14T14:32:17.000Z" }, { "Id": 329, "Title": "Вирубка лісу", "Latitude": 49.968117, "Longtitude": 23.32552, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-14T17:19:56.000Z" }, { "Id": 330, "Title": "Екологічний стан повітряного середовища", "Latitude": 49.382374, "Longtitude": 24.143829, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-14T18:53:57.000Z" }, { "Id": 331, "Title": "Екологічний стан повітряного середовища", "Latitude": 49.381477, "Longtitude": 24.151382, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-14T19:26:10.000Z" }, { "Id": 332, "Title": "Відходи ", "Latitude": 49.385391, "Longtitude": 24.141426, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-14T20:01:50.000Z" }, { "Id": 333, "Title": "Очистные сооружения воняют", "Latitude": 49.205544, "Longtitude": 28.434505, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-15T10:40:15.000Z" }, { "Id": 334, "Title": "Забруднення річки Острівка", "Latitude": 50.269375, "Longtitude": 24.63521, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:05:00.000Z" }, { "Id": 335, "Title": "Забруднення річки Острівка", "Latitude": 50.279892, "Longtitude": 24.647291, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:12:37.000Z" }, { "Id": 336, "Title": "Забруднення річки Острівки", "Latitude": 50.284679, "Longtitude": 24.650145, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:31:24.000Z" }, { "Id": 337, "Title": "Забруднення річки Острівки", "Latitude": 50.279411, "Longtitude": 24.648514, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:46:28.000Z" }, { "Id": 338, "Title": "Виробництво сірки", "Latitude": 49.465446, "Longtitude": 24.132843, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-16T23:55:27.000Z" }, { "Id": 339, "Title": "Засмічення", "Latitude": 49.82259, "Longtitude": 24.025555, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T12:00:59.000Z" }, { "Id": 340, "Title": "Засмічення", "Latitude": 49.822758, "Longtitude": 24.02504, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T12:04:54.000Z" }, { "Id": 341, "Title": "Забруднення річки Тисмениця фенолами", "Latitude": 49.280785, "Longtitude": 23.406078, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T17:49:02.000Z" }, { "Id": 342, "Title": "Забруднення річки Тисмениця фенолами", "Latitude": 49.281982, "Longtitude": 23.407913, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T18:17:17.000Z" }, { "Id": 343, "Title": "Забруднення річки Свиня.", "Latitude": 50.155895, "Longtitude": 24.033709, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T18:36:29.000Z" }, { "Id": 344, "Title": "Забруднення річки Свиня.", "Latitude": 50.133617, "Longtitude": 24.052334, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T19:40:41.000Z" }, { "Id": 345, "Title": "водна ерозія", "Latitude": 49.620274, "Longtitude": 24.443207, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T20:44:17.000Z" }, { "Id": 346, "Title": "незаконна вирубка", "Latitude": 49.312141, "Longtitude": 22.810106, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-17T20:58:11.000Z" }, { "Id": 347, "Title": "Вирубка лісу", "Latitude": 49.327358, "Longtitude": 23.015671, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-17T22:49:12.000Z" }, { "Id": 348, "Title": "діяльність свиноферми", "Latitude": 50.197754, "Longtitude": 23.795315, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T23:40:09.000Z" }, { "Id": 349, "Title": "Проблеми зі сміттям в Пустомитах", "Latitude": 49.708496, "Longtitude": 23.887024, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-18T06:59:58.000Z" }, { "Id": 350, "Title": "Вирубка лысу", "Latitude": 49.326687, "Longtitude": 23.015499, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-18T08:54:09.000Z" }, { "Id": 351, "Title": "Колишній завод Радикал", "Latitude": 50.457191, "Longtitude": 30.642908, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-19T16:47:27.000Z" }, { "Id": 352, "Title": "Випасання худоби на території ботанічного заказника \"Кемпа\"", "Latitude": 50.085014, "Longtitude": 25.127277, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-05-20T20:59:11.000Z" }, { "Id": 354, "Title": "Завод Радикал - майже 100 тисяч тон ртутьвмісних відходів", "Latitude": 50.457775, "Longtitude": 30.643488, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-22T16:48:29.000Z" }, { "Id": 355, "Title": "Проблема з очисними спорудами", "Latitude": 49.644958, "Longtitude": 23.85973, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-27T16:06:27.000Z" }, { "Id": 356, "Title": "Жорстоке поводження з тваринами в КП", "Latitude": 49.912457, "Longtitude": 36.277069, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-29T10:31:17.000Z" }, { "Id": 357, "Title": "Свалка", "Latitude": 47.104252, "Longtitude": 37.674179, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-29T20:55:39.000Z" }, { "Id": 358, "Title": "Аварійний стан водоскидної споруди", "Latitude": 49.788448, "Longtitude": 30.114904, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-06-02T16:28:18.000Z" }, { "Id": 359, "Title": "Стихійне звалище будматеріалів - с.Пирогів", "Latitude": 50.345535, "Longtitude": 30.520706, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-03T16:46:25.000Z" }, { "Id": 360, "Title": "Незаконне звалище у лісі, сміття вивозять камазами, корупція", "Latitude": 50.365395, "Longtitude": 30.206394, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-08T20:21:54.000Z" }, { "Id": 365, "Title": "Вырубка деревьев", "Latitude": 49.934483, "Longtitude": 36.395905, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-06-12T12:57:44.000Z" }, { "Id": 366, "Title": "Забруднення малої річки ", "Latitude": 49.815613, "Longtitude": 36.059532, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-06-17T14:32:57.000Z" }, { "Id": 367, "Title": "Забруднення побутовим сміттям лісосмуги", "Latitude": 49.886837, "Longtitude": 36.047729, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-17T19:24:04.000Z" }, { "Id": 368, "Title": "Шкідливі викиди в атмосферу", "Latitude": 49.532337, "Longtitude": 23.977661, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-07-07T17:20:37.000Z" }, { "Id": 369, "Title": "Сміття в парку", "Latitude": 49.94553, "Longtitude": 30.217123, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-10T14:53:18.000Z" }, { "Id": 372, "Title": "Дуже брудні літаки", "Latitude": 49.812954, "Longtitude": 23.95792, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-07-26T22:33:38.000Z" }, { "Id": 374, "Title": "Вирубка лісу в селі Велика Тур'я", "Latitude": 49.120064, "Longtitude": 24.091816, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-27T10:33:35.000Z" }, { "Id": 376, "Title": "Забруднення річки виробничими відходами", "Latitude": 49.970158, "Longtitude": 36.092834, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-07-28T21:00:19.000Z" }, { "Id": 377, "Title": "Незаконний вилов риби. Сітки, екрани, перемети....", "Latitude": 49.968281, "Longtitude": 36.091721, "ProblemTypes_Id": 6, "Status": 0, "Date": "2015-07-28T21:11:28.000Z" }, { "Id": 378, "Title": "сміттєзвалище", "Latitude": 50.587433, "Longtitude": 30.152578, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T11:26:00.000Z" }, { "Id": 379, "Title": "вивіз сміття і копання піску", "Latitude": 50.580238, "Longtitude": 30.174465, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T11:28:58.000Z" }, { "Id": 381, "Title": "Изрязаха горите тези гниди ДПС...", "Latitude": 41.631077, "Longtitude": 25.861147, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-30T13:11:51.000Z" }, { "Id": 382, "Title": "Бракониерство на дивеч!", "Latitude": 41.623947, "Longtitude": 25.829136, "ProblemTypes_Id": 6, "Status": 0, "Date": "2015-07-30T13:17:11.000Z" }, { "Id": 383, "Title": "Рязане на дървета...", "Latitude": 41.617008, "Longtitude": 25.885031, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-30T13:19:05.000Z" }, { "Id": 384, "Title": "Стихійне сміттєзвалище, забруднення річки", "Latitude": 49.659962, "Longtitude": 31.967726, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T14:03:29.000Z" }, { "Id": 385, "Title": "Несвоєчасність вивезення відходів, влаштування сміттєзвалища.", "Latitude": 50.266247, "Longtitude": 28.672342, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T14:27:30.000Z" }, { "Id": 386, "Title": "Забруднення парку", "Latitude": 48.767059, "Longtitude": 30.221844, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-02T21:15:41.000Z" }, { "Id": 387, "Title": "Машини вивозять буд сміття на дорогу", "Latitude": 50.411907, "Longtitude": 30.270939, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-05T14:25:52.000Z" }, { "Id": 388, "Title": "Скажені лисиці", "Latitude": 50.418373, "Longtitude": 30.271252, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-06T08:18:55.000Z" }, { "Id": 389, "Title": "Хвърляне на отпадъци в забранена местност!", "Latitude": 41.649483, "Longtitude": 25.868004, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-06T19:25:30.000Z" }, { "Id": 391, "Title": "Стихійні сміттєзвалища", "Latitude": 50.42878, "Longtitude": 30.251772, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T08:22:21.000Z" }, { "Id": 392, "Title": "Цигани на Львіському вокзалі", "Latitude": 49.823811, "Longtitude": 24.0271, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-07T10:23:49.000Z" }, { "Id": 393, "Title": "Стихійні звалища побутового та будівельного сміття.", "Latitude": 46.579807, "Longtitude": 30.763865, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T12:01:51.000Z" }, { "Id": 395, "Title": "Стрийське сміттєзвалище", "Latitude": 49.276543, "Longtitude": 23.826256, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T22:44:03.000Z" }, { "Id": 400, "Title": "Незаконне сміттєзвалище у лісовій посадці", "Latitude": 50.070911, "Longtitude": 36.295181, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T11:22:43.000Z" }, { "Id": 401, "Title": "Забруднення паркової зони та зони відпочинку", "Latitude": 50.029633, "Longtitude": 36.318592, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T11:42:38.000Z" }, { "Id": 402, "Title": "Сміття в місці громадського відпочинку", "Latitude": 50.414589, "Longtitude": 30.238495, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T22:31:42.000Z" }, { "Id": 403, "Title": "Сміттєзвалище", "Latitude": 50.385044, "Longtitude": 30.231199, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-10T08:49:13.000Z" }, { "Id": 433, "Title": "Вирубка лісів", "Latitude": 48.946972, "Longtitude": 23.892775, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T19:57:01.000Z" }, { "Id": 435, "Title": "Вирубка лісів", "Latitude": 48.718658, "Longtitude": 23.665195, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T20:48:39.000Z" }, { "Id": 436, "Title": "Забруднення річки", "Latitude": 48.720272, "Longtitude": 23.665838, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-12T20:59:18.000Z" }, { "Id": 437, "Title": "Вирубування бука", "Latitude": 48.706028, "Longtitude": 23.675922, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T21:04:50.000Z" }, { "Id": 444, "Title": "Очень грязная речушка", "Latitude": 50.698048, "Longtitude": 29.577974, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-13T16:35:03.000Z" }, { "Id": 451, "Title": "підприємство, що вигоовляє добриво з кісток тварин та птиці.", "Latitude": 48.475231, "Longtitude": 35.102776, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-08-14T09:17:42.000Z" }, { "Id": 484, "Title": "Калуська екологічна катастрофа", "Latitude": 49.029194, "Longtitude": 24.325052, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-15T12:06:26.000Z" }, { "Id": 486, "Title": "Зубрудненя і оміліня водойми", "Latitude": 48.402882, "Longtitude": 30.845661, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-15T17:46:32.000Z" }, { "Id": 528, "Title": " Болехівський шкірзавод", "Latitude": 49.064384, "Longtitude": 23.865074, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-15T21:46:24.000Z" }, { "Id": 544, "Title": "Рубають ліси", "Latitude": 48.355, "Longtitude": 24.52313, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-16T23:31:04.000Z" }, { "Id": 589, "Title": "Розорюваня попід проїжу частину", "Latitude": 48.419231, "Longtitude": 30.838537, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-17T07:59:03.000Z" }, { "Id": 624, "Title": "Вивозять пісок з річки", "Latitude": 49.161774, "Longtitude": 24.028494, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-18T14:54:15.000Z" }, { "Id": 625, "Title": "Пропадають скарби с. Солотвино", "Latitude": 47.958786, "Longtitude": 23.856256, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-18T15:06:12.000Z" }, { "Id": 626, "Title": "вирубка лісу", "Latitude": 49.126019, "Longtitude": 23.137207, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-18T16:25:51.000Z" }, { "Id": 634, "Title": "водорослі", "Latitude": 46.423897, "Longtitude": 30.787811, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-27T23:17:31.000Z" }, { "Id": 635, "Title": "морські водорослі", "Latitude": 46.426262, "Longtitude": 30.793476, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-27T23:29:50.000Z" }, { "Id": 638, "Title": "Загрязнение воздуха", "Latitude": 51.500408, "Longtitude": 31.273228, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-03T10:47:39.000Z" }, { "Id": 641, "Title": "Горять торфяники", "Latitude": 50.641842, "Longtitude": 30.026493, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-04T01:12:23.000Z" }, { "Id": 644, "Title": "Забруднення", "Latitude": 50.215153, "Longtitude": 24.377016, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-19T13:03:13.000Z" }, { "Id": 647, "Title": "ffgvfy", "Latitude": 52.406918, "Longtitude": 51.528439, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-10-01T16:23:22.000Z" }, { "Id": 653, "Title": "Problem!!!", "Latitude": 37.785835, "Longtitude": -122.406418, "ProblemTypes_Id": 3, "Status": 0, "Date": "2015-10-04T13:47:03.000Z" }, { "Id": 656, "Title": " Много мусора", "Latitude": 45.380795, "Longtitude": 36.617615, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-10-05T16:30:19.000Z" }, { "Id": 659, "Title": "Домбровський кар'єр", "Latitude": 49.026752, "Longtitude": 24.324713, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-10-05T23:42:52.000Z" }, { "Id": 660, "Title": "Грибовицьке сміттєзвалище!!", "Latitude": 49.917095, "Longtitude": 24.018227, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-10-06T01:00:47.000Z" }, { "Id": 662, "Title": "Problem", "Latitude": 36.609844, "Longtitude": -119.202545, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-10-06T10:01:37.000Z" }, { "Id": 663, "Title": "Домбровський кар'єр", "Latitude": 49.02013, "Longtitude": 24.328325, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-10-06T10:41:47.000Z" }, { "Id": 664, "Title": "Сміттєзвалище на Совських ставках", "Latitude": 50.408848, "Longtitude": 30.495214, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-10-06T16:17:23.000Z" }, { "Id": 665, "Title": "Загрязнение воздуха", "Latitude": 48.405476, "Longtitude": 35.113205, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-06T23:15:10.000Z" }, { "Id": 666, "Title": "Кислотоотстойник", "Latitude": 48.412552, "Longtitude": 35.145199, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-11-06T23:24:14.000Z" }, { "Id": 667, "Title": "22", "Latitude": 50.039997, "Longtitude": 36.364491, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:39:22.000Z" }, { "Id": 668, "Title": "2", "Latitude": 50.026051, "Longtitude": 36.387489, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:45:28.000Z" }, { "Id": 669, "Title": "33", "Latitude": 50.039997, "Longtitude": 36.364746, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:52:07.000Z" }, { "Id": 670, "Title": "Незаконне сміттєзвалище", "Latitude": 50.532253, "Longtitude": 30.590014, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-11-23T00:45:59.000Z" }, { "Id": 671, "Title": "Незаконний вивіз піску", "Latitude": 50.637405, "Longtitude": 30.712152, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-23T00:48:20.000Z" }, { "Id": 672, "Title": "Надзвичайно брудний парк", "Latitude": 49.895962, "Longtitude": 24.150696, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-11-23T15:40:37.000Z" }, { "Id": 674, "Title": "Сморід від Полтви", "Latitude": 49.829456, "Longtitude": 24.039888, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-11-28T20:09:01.000Z" }, { "Id": 675, "Title": "Самовільна вирубка дерев ", "Latitude": 50.632511, "Longtitude": 26.247078, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-29T21:55:37.000Z" }];
-
-/***/ },
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24818,17 +24929,17 @@
 	var Modernizr = isBrowser ? __webpack_require__(217) : undefined;
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var KeyCode = __webpack_require__(193);
-	var StylePropable = __webpack_require__(160);
-	var AutoPrefix = __webpack_require__(165);
-	var Transitions = __webpack_require__(183);
+	var ReactDOM = __webpack_require__(159);
+	var KeyCode = __webpack_require__(195);
+	var StylePropable = __webpack_require__(162);
+	var AutoPrefix = __webpack_require__(167);
+	var Transitions = __webpack_require__(185);
 	var WindowListenable = __webpack_require__(218);
 	var Overlay = __webpack_require__(219);
-	var Paper = __webpack_require__(213);
+	var Paper = __webpack_require__(214);
 	var Menu = __webpack_require__(220);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var openNavEventHandler = null;
 
@@ -25464,7 +25575,7 @@
 
 	'use strict';
 
-	var Events = __webpack_require__(192);
+	var Events = __webpack_require__(194);
 
 	module.exports = {
 
@@ -25499,12 +25610,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
-	var Colors = __webpack_require__(179);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var ReactDOM = __webpack_require__(159);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
+	var Colors = __webpack_require__(181);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var Overlay = React.createClass({
 	  displayName: 'Overlay',
@@ -25651,19 +25762,19 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
+	var ReactDOM = __webpack_require__(159);
 	var CssEvent = __webpack_require__(221);
 	var KeyLine = __webpack_require__(222);
-	var KeyCode = __webpack_require__(193);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
+	var KeyCode = __webpack_require__(195);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
 	var ClickAwayable = __webpack_require__(223);
-	var Paper = __webpack_require__(213);
+	var Paper = __webpack_require__(214);
 	var MenuItem = __webpack_require__(224);
 	var LinkMenuItem = __webpack_require__(230);
 	var SubheaderMenuItem = __webpack_require__(231);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	/***********************
 	* Nested Menu Component
@@ -26297,7 +26408,7 @@
 
 	'use strict';
 
-	var Events = __webpack_require__(192);
+	var Events = __webpack_require__(194);
 
 	module.exports = {
 
@@ -26375,9 +26486,9 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var Events = __webpack_require__(192);
-	var Dom = __webpack_require__(207);
+	var ReactDOM = __webpack_require__(159);
+	var Events = __webpack_require__(194);
+	var Dom = __webpack_require__(208);
 
 	module.exports = {
 
@@ -26428,11 +26539,11 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var FontIcon = __webpack_require__(209);
+	var StylePropable = __webpack_require__(162);
+	var FontIcon = __webpack_require__(210);
 	var Toggle = __webpack_require__(225);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var Types = {
 	  LINK: 'LINK',
@@ -26667,12 +26778,12 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
-	var Paper = __webpack_require__(213);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
+	var Paper = __webpack_require__(214);
 	var EnhancedSwitch = __webpack_require__(226);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var Toggle = React.createClass({
 	  displayName: 'Toggle',
@@ -26866,18 +26977,18 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var ReactDOM = __webpack_require__(195);
-	var KeyCode = __webpack_require__(193);
-	var StylePropable = __webpack_require__(160);
-	var Transitions = __webpack_require__(183);
+	var ReactDOM = __webpack_require__(159);
+	var KeyCode = __webpack_require__(195);
+	var StylePropable = __webpack_require__(162);
+	var Transitions = __webpack_require__(185);
 	var UniqueId = __webpack_require__(227);
 	var WindowListenable = __webpack_require__(218);
 	var ClearFix = __webpack_require__(228);
-	var FocusRipple = __webpack_require__(194);
-	var TouchRipple = __webpack_require__(206);
-	var Paper = __webpack_require__(213);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var FocusRipple = __webpack_require__(196);
+	var TouchRipple = __webpack_require__(207);
+	var Paper = __webpack_require__(214);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var EnhancedSwitch = React.createClass({
 	  displayName: 'EnhancedSwitch',
@@ -27316,9 +27427,9 @@
 
 	var React = __webpack_require__(2);
 	var BeforeAfterWrapper = __webpack_require__(229);
-	var StylePropable = __webpack_require__(160);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var ClearFix = React.createClass({
 	  displayName: 'ClearFix',
@@ -27395,10 +27506,10 @@
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var AutoPrefix = __webpack_require__(165);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var AutoPrefix = __webpack_require__(167);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	/**
 	 *  BeforeAfterWrapper
@@ -27530,9 +27641,9 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var LinkMenuItem = React.createClass({
 	  displayName: 'LinkMenuItem',
@@ -27664,10 +27775,10 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var StylePropable = __webpack_require__(160);
-	var Typography = __webpack_require__(178);
-	var DefaultRawTheme = __webpack_require__(201);
-	var ThemeManager = __webpack_require__(204);
+	var StylePropable = __webpack_require__(162);
+	var Typography = __webpack_require__(180);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
 
 	var SubheaderMenuItem = React.createClass({
 	  displayName: 'SubheaderMenuItem',
@@ -27767,6 +27878,88 @@
 
 	'use strict';
 
+	var React = __webpack_require__(2);
+	var ContextPure = __webpack_require__(183);
+	var StylePropable = __webpack_require__(162);
+	var Styles = __webpack_require__(166);
+	var DefaultRawTheme = __webpack_require__(202);
+	var ThemeManager = __webpack_require__(205);
+
+	var FlatButtonLabel = React.createClass({
+	  displayName: 'FlatButtonLabel',
+
+	  mixins: [ContextPure, StylePropable],
+
+	  contextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+
+	  propTypes: {
+	    label: React.PropTypes.node,
+	    style: React.PropTypes.object
+	  },
+
+	  //for passing default theme context to children
+	  childContextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+
+	  getChildContext: function getChildContext() {
+	    return {
+	      muiTheme: this.state.muiTheme
+	    };
+	  },
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme)
+	    };
+	  },
+
+	  //to update theme inside state whenever a new theme is passed down
+	  //from the parent / owner using context
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps, nextContext) {
+	    var newMuiTheme = nextContext.muiTheme ? nextContext.muiTheme : this.state.muiTheme;
+	    this.setState({ muiTheme: newMuiTheme });
+	  },
+
+	  statics: {
+	    getRelevantContextKeys: function getRelevantContextKeys(muiTheme) {
+	      return {
+	        spacingDesktopGutterLess: muiTheme.rawTheme.spacing.desktopGutterLess
+	      };
+	    }
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var label = _props.label;
+	    var style = _props.style;
+
+	    var contextKeys = this.constructor.getRelevantContextKeys(this.state.muiTheme);
+
+	    var mergedRootStyles = this.mergeStyles({
+	      position: 'relative',
+	      padding: '0 ' + contextKeys.spacingDesktopGutterLess + 'px'
+	    }, style);
+
+	    return React.createElement(
+	      'span',
+	      { style: this.prepareStyles(mergedRootStyles) },
+	      label
+	    );
+	  }
+
+	});
+
+	module.exports = FlatButtonLabel;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	Object.defineProperty(exports, "__esModule", {
@@ -27777,7 +27970,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _actions = __webpack_require__(233);
+	var _actions = __webpack_require__(234);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
@@ -27852,7 +28045,7 @@
 	exports.default = Map;
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27861,7 +28054,7 @@
 	    value: true
 	});
 
-	var _markers = __webpack_require__(214);
+	var _markers = __webpack_require__(235);
 
 	var _markers2 = _interopRequireDefault(_markers);
 
@@ -27877,109 +28070,15 @@
 	};
 
 /***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
+/* 235 */
+/***/ function(module, exports) {
 
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _appBar = __webpack_require__(159);
-
-	var _appBar2 = _interopRequireDefault(_appBar);
-
-	var _leftNav = __webpack_require__(215);
-
-	var _leftNav2 = _interopRequireDefault(_leftNav);
-
-	var _map = __webpack_require__(232);
-
-	var _map2 = _interopRequireDefault(_map);
-
-	var _actions = __webpack_require__(233);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var menuItems = [];
-
-	function menu(data) {
-	    return [{
-	        text: data.Title
-	    }];
-	}
-
-	var Container = (function (_Component) {
-	    _inherits(Container, _Component);
-
-	    function Container() {
-	        var _Object$getPrototypeO;
-
-	        var _temp, _this, _ret;
-
-	        _classCallCheck(this, Container);
-
-	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	            args[_key] = arguments[_key];
-	        }
-
-	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Container)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-	            menuItems: [],
-	            leftNavOpen: false
-	        }, _this.clickHandler = function (data) {
-	            //this.refs.leftNav.toggle();
-	            //this.refs.leftNav.setProps(menu(data));
-	            _this.setState({
-	                menuItems: menu(data),
-	                leftNavOpen: true
-	            });
-	            _this.refs.leftNav.open();
-	            _this.render();
-	        }, _temp), _possibleConstructorReturn(_this, _ret);
-	    }
-
-	    _createClass(Container, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    _appBar2.default,
-	                    {
-	                        ref: 'appBar',
-	                        title: 'Map',
-	                        iconClassNameRight: 'muidocs-icon-navigation-expand-more' },
-	                    _react2.default.createElement(_leftNav2.default, {
-	                        menuItems: this.state.menuItems,
-	                        ref: 'leftNav',
-	                        docked: false
-	                    })
-	                ),
-	                _react2.default.createElement(_map2.default, { ref: 'map', markerClick: this.clickHandler.bind(this) })
-	            );
-	        }
-	    }]);
-
-	    return Container;
-	})(_react.Component);
-
-	exports.default = Container;
+	exports.default = [{ "Id": 1, "Title": "Відновлення острова Малий Татару", "Latitude": 45.350166, "Longtitude": 29.001091, "ProblemTypes_Id": 4, "Status": 1, "Date": "2014-02-18T14:15:51.000Z" }, { "Id": 2, "Title": "Китайський мега-порт", "Latitude": 45.125866, "Longtitude": 33.607864, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-19T19:00:50.000Z" }, { "Id": 3, "Title": "Сабарівський ліс", "Latitude": 49.190342, "Longtitude": 28.449955, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-02-26T19:09:47.000Z" }, { "Id": 4, "Title": "Спасите Древний могучий Днепр!", "Latitude": 48.487488, "Longtitude": 35.068359, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-26T23:45:04.000Z" }, { "Id": 5, "Title": "Загрязнение Днепра", "Latitude": 46.8326, "Longtitude": 33.416462, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-02-27T22:24:53.000Z" }, { "Id": 6, "Title": "Знищення гніздівель ластівок, Чубинське, Бориспільський район", "Latitude": 50.387123, "Longtitude": 30.853321, "ProblemTypes_Id": 5, "Status": 1, "Date": "2014-02-18T22:54:51.000Z" }, { "Id": 7, "Title": "Лиман", "Latitude": 46.571136, "Longtitude": 30.750046, "ProblemTypes_Id": 4, "Status": 1, "Date": "2014-02-27T22:19:56.000Z" }, { "Id": 8, "Title": "забор", "Latitude": 50.451805, "Longtitude": 30.670565, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-02-28T01:16:08.000Z" }, { "Id": 9, "Title": "Необхідність збереження пам’ятки природи місцевого значення «Тунель кохання», с. Клевань, Рівненський район Рівненської області.", "Latitude": 50.753944, "Longtitude": 26.013908, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-02-28T01:29:48.000Z" }, { "Id": 10, "Title": "Необхідність створення заказника для дельфінів біля мису Айя, Сарич та узбережжя Балаклави. ", "Latitude": 44.479362, "Longtitude": 33.600655, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-02-28T01:37:27.000Z" }, { "Id": 11, "Title": "Місцевість дуже забруднена, місто потерпає від сміття", "Latitude": 47.654289, "Longtitude": 34.598694, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-02-28T04:15:33.000Z" }, { "Id": 12, "Title": "с.Пожарки", "Latitude": 49.951221, "Longtitude": 30.355225, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T03:25:39.000Z" }, { "Id": 13, "Title": "Сміттєзвалища ", "Latitude": 50.973751, "Longtitude": 25.228537, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T03:35:18.000Z" }, { "Id": 14, "Title": "Знакає річка", "Latitude": 48.711353, "Longtitude": 35.963142, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-03T18:09:47.000Z" }, { "Id": 18, "Title": "ГМО", "Latitude": 50.729504, "Longtitude": 31.478577, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-03T19:39:08.000Z" }, { "Id": 19, "Title": "Сміттєзвалище на Гмирі 6", "Latitude": 50.392899, "Longtitude": 30.626213, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-03T21:15:34.000Z" }, { "Id": 20, "Title": "Сміттєзвалище", "Latitude": 50.290546, "Longtitude": 30.79648, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-06T23:59:10.000Z" }, { "Id": 21, "Title": "Загроза втрати біорізноманіття акваторії навколо Тарханкутського півострова", "Latitude": 45.414238, "Longtitude": 32.491722, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-07T02:20:47.000Z" }, { "Id": 22, "Title": "НЕЗАКОНЕ СМІТТЄЗВАЛИЩЕ ОРГАНІЗОВАНЕ СІЛЬСЬКОЮ РАДОЮ", "Latitude": 50.619884, "Longtitude": 30.910093, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-11T17:28:18.000Z" }, { "Id": 23, "Title": "мусор в Одессе", "Latitude": 46.483265, "Longtitude": 30.81665, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-13T06:43:36.000Z" }, { "Id": 24, "Title": "загрязнение воздуха", "Latitude": 46.452995, "Longtitude": 30.926514, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-14T01:20:55.000Z" }, { "Id": 25, "Title": "Викид сажі та зниження ставків пром. викидами", "Latitude": 49.82093, "Longtitude": 30.433931, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-14T21:10:33.000Z" }, { "Id": 26, "Title": "Проблема повiтря", "Latitude": 47.798397, "Longtitude": 33.365479, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T19:24:58.000Z" }, { "Id": 27, "Title": "Пал травы", "Latitude": 58.101105, "Longtitude": 30.596924, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T20:22:13.000Z" }, { "Id": 28, "Title": "Забруднення ґрунтових вод", "Latitude": 46.830135, "Longtitude": 32.947998, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-17T20:23:07.000Z" }, { "Id": 29, "Title": "стихійні сміттєзвалища", "Latitude": 48.742039, "Longtitude": 22.509613, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-17T20:39:06.000Z" }, { "Id": 30, "Title": "засорение реки", "Latitude": 50.134663, "Longtitude": 28.685303, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-17T22:21:55.000Z" }, { "Id": 31, "Title": "Загальна системна проблема із сміттям", "Latitude": 50.42952, "Longtitude": 30.541992, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T12:14:00.000Z" }, { "Id": 32, "Title": "Сміттєзвалище біля лісу", "Latitude": 49.903675, "Longtitude": 31.231663, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T12:14:27.000Z" }, { "Id": 33, "Title": "Сміттєзвалища на \"Коса на Победе\"", "Latitude": 48.417751, "Longtitude": 35.074734, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T15:14:05.000Z" }, { "Id": 34, "Title": "сплошная вырубка леса ", "Latitude": 50.160378, "Longtitude": 29.982183, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-18T18:21:22.000Z" }, { "Id": 36, "Title": "Сміттєзвалище. Забруднення...", "Latitude": 50.398918, "Longtitude": 30.413074, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T18:36:04.000Z" }, { "Id": 37, "Title": "Постійна зміна клімату, вирубка лісів, смітник", "Latitude": 50.164585, "Longtitude": 30.358658, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T19:51:48.000Z" }, { "Id": 39, "Title": "Стройка", "Latitude": 50.54311, "Longtitude": 30.239182, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-18T20:54:31.000Z" }, { "Id": 40, "Title": "Смітник біля будинку", "Latitude": 48.603317, "Longtitude": 22.302074, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-18T21:35:47.000Z" }, { "Id": 41, "Title": "Незаконный вывоз песка", "Latitude": 50.399807, "Longtitude": 30.598898, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-18T22:36:33.000Z" }, { "Id": 42, "Title": "Загрязнение родникового водоёма", "Latitude": 50.672203, "Longtitude": 30.269222, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-19T03:41:47.000Z" }, { "Id": 43, "Title": "Сміттєзвалищє", "Latitude": 48.815414, "Longtitude": 29.377388, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-19T11:04:12.000Z" }, { "Id": 44, "Title": "Брудно", "Latitude": 49.58955, "Longtitude": 34.551254, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-20T00:09:36.000Z" }, { "Id": 45, "Title": "Забруднені водойоми та береги річок", "Latitude": 49.073868, "Longtitude": 33.417664, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-19T17:06:54.000Z" }, { "Id": 46, "Title": "Сміттєзвалище", "Latitude": 50.273788, "Longtitude": 28.696827, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-20T12:08:28.000Z" }, { "Id": 48, "Title": "незаконне будівництво", "Latitude": 48.514507, "Longtitude": 35.054295, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T10:22:50.000Z" }, { "Id": 49, "Title": "Переповнення відходами людського відпочинку", "Latitude": 50.528706, "Longtitude": 30.532335, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T15:04:22.000Z" }, { "Id": 50, "Title": "Як зробити місто чистим", "Latitude": 48.297813, "Longtitude": 38.023682, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-25T23:50:14.000Z" }, { "Id": 51, "Title": "Зробити водойми екологічночистим місцем відпочинку", "Latitude": 48.327038, "Longtitude": 38.023682, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T00:16:53.000Z" }, { "Id": 52, "Title": "незаконная стройка", "Latitude": 56.903156, "Longtitude": 60.721321, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T00:31:53.000Z" }, { "Id": 53, "Title": "Вирубка дерев", "Latitude": 50.00774, "Longtitude": 36.24115, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T01:48:56.000Z" }, { "Id": 54, "Title": "Завод з токсичними викидами в житловій зоні", "Latitude": 48.442959, "Longtitude": 25.571934, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T18:12:01.000Z" }, { "Id": 55, "Title": "Засмічення Вовчинецьких гір побутовим сміттям", "Latitude": 48.958569, "Longtitude": 24.750105, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T18:15:11.000Z" }, { "Id": 56, "Title": "Пересыхание цепи озер в Березовой Рудке", "Latitude": 50.315105, "Longtitude": 32.232643, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T19:34:09.000Z" }, { "Id": 57, "Title": "Трасса здоровья и пляжи", "Latitude": 46.458202, "Longtitude": 30.760689, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T20:09:09.000Z" }, { "Id": 58, "Title": "Свалка в карьере ракушечника", "Latitude": 46.625599, "Longtitude": 30.906193, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:10:04.000Z" }, { "Id": 59, "Title": "Порушення підприємством санітарно-екологічних норм", "Latitude": 50.444881, "Longtitude": 29.816818, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:13:06.000Z" }, { "Id": 60, "Title": "Высыхает лиман", "Latitude": 46.576092, "Longtitude": 30.896473, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:13:44.000Z" }, { "Id": 61, "Title": "незаконні сміттезвалища", "Latitude": 49.993614, "Longtitude": 36.199951, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:15:14.000Z" }, { "Id": 62, "Title": "Загрязнение Черного моря", "Latitude": 46.470497, "Longtitude": 30.77013, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:16:29.000Z" }, { "Id": 63, "Title": "Смітник у зоні відпочинку", "Latitude": 48.713165, "Longtitude": 29.159775, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:16:57.000Z" }, { "Id": 64, "Title": "Незаконный вылов рыбы", "Latitude": 46.577152, "Longtitude": 30.929817, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T20:20:39.000Z" }, { "Id": 65, "Title": "Питьевая вода", "Latitude": 46.479481, "Longtitude": 30.7164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T20:21:24.000Z" }, { "Id": 66, "Title": "экологически опасная свалка", "Latitude": 48.65786, "Longtitude": 35.22131, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T20:25:12.000Z" }, { "Id": 67, "Title": "Заьруднення повітря", "Latitude": 50.243355, "Longtitude": 28.738842, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:25:31.000Z" }, { "Id": 68, "Title": "Сохранение и развитие зеленых насаждений", "Latitude": 46.459621, "Longtitude": 30.73494, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-26T20:26:07.000Z" }, { "Id": 69, "Title": "\"Сирітська хатка\" на березі Південного Бугу", "Latitude": 49.518551, "Longtitude": 28.023504, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-26T20:35:05.000Z" }, { "Id": 71, "Title": "сміттезвалища і сміття взовж річкі Ірпінь", "Latitude": 50.738132, "Longtitude": 30.362991, "ProblemTypes_Id": 2, "Status": 1, "Date": "2014-03-26T20:39:53.000Z" }, { "Id": 72, "Title": "Автозаправка напроти дев\\'ятиповерхового будинку", "Latitude": 48.081783, "Longtitude": 38.076344, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T20:43:56.000Z" }, { "Id": 73, "Title": "Загрязнение местности и атмосферы", "Latitude": 48.48362, "Longtitude": 32.305771, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:00:23.000Z" }, { "Id": 74, "Title": "Забруднення території", "Latitude": 51.312832, "Longtitude": 26.593416, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:11:29.000Z" }, { "Id": 75, "Title": "Мусорка", "Latitude": 48.369331, "Longtitude": 35.114708, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T21:15:06.000Z" }, { "Id": 76, "Title": "Незаконный вылов рыбы, раков", "Latitude": 46.505424, "Longtitude": 30.049454, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T21:47:51.000Z" }, { "Id": 79, "Title": "не чистят", "Latitude": 50.457287, "Longtitude": 30.334539, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T22:28:10.000Z" }, { "Id": 80, "Title": "выбросы в атмосферу загрязнённого воздуха с металлургических комбинатов и нехватка кислорода в воэдухе", "Latitude": 47.077602, "Longtitude": 37.545776, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T22:45:01.000Z" }, { "Id": 81, "Title": "Не екологiчно чистi придприэмства якi забруднюють навколишнню середу", "Latitude": 48.290504, "Longtitude": 38.038788, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-26T23:04:12.000Z" }, { "Id": 82, "Title": "Незаконне полювання в околицях с. Липовиця", "Latitude": 48.767052, "Longtitude": 24.042892, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-26T23:20:33.000Z" }, { "Id": 83, "Title": "Греблі", "Latitude": 49.61071, "Longtitude": 34.562988, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-26T23:22:43.000Z" }, { "Id": 84, "Title": "Велика кількість сміття", "Latitude": 50.001476, "Longtitude": 36.280258, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-26T23:59:57.000Z" }, { "Id": 85, "Title": "Міське сміттєзвалище", "Latitude": 50.393143, "Longtitude": 24.208099, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T00:06:30.000Z" }, { "Id": 86, "Title": "Браконьерство", "Latitude": 51.413448, "Longtitude": 30.819054, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T00:14:12.000Z" }, { "Id": 88, "Title": "Истребление рыбы \"электроудочкой\".", "Latitude": 50.573318, "Longtitude": 33.344879, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T01:33:02.000Z" }, { "Id": 89, "Title": "Вирубка лісу.", "Latitude": 48.471329, "Longtitude": 27.837683, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T01:48:47.000Z" }, { "Id": 90, "Title": "Радіаційне забруднення - База \"С\"", "Latitude": 48.429314, "Longtitude": 34.765205, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T02:34:45.000Z" }, { "Id": 91, "Title": "Переповнення відходами людського відпочинку", "Latitude": 50.555897, "Longtitude": 30.538923, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T02:55:33.000Z" }, { "Id": 93, "Title": "Сміттєзвалище переповнене.", "Latitude": 50.236591, "Longtitude": 30.524874, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T11:03:44.000Z" }, { "Id": 94, "Title": "Забруднення води", "Latitude": 47.822563, "Longtitude": 35.144802, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:11:51.000Z" }, { "Id": 95, "Title": "Забруднення повітря", "Latitude": 47.853718, "Longtitude": 35.137711, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T11:15:51.000Z" }, { "Id": 96, "Title": "Незаконний вилов риби", "Latitude": 49.552834, "Longtitude": 32.76741, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T11:31:38.000Z" }, { "Id": 97, "Title": "Енергетика", "Latitude": 50.051533, "Longtitude": 36.207001, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T11:35:11.000Z" }, { "Id": 98, "Title": "Зливання стычних вод у р. Хорол", "Latitude": 49.970848, "Longtitude": 33.608086, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:40:13.000Z" }, { "Id": 99, "Title": "смiття", "Latitude": 46.422714, "Longtitude": 30.761719, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T11:48:03.000Z" }, { "Id": 101, "Title": "Уникальные водоемы.", "Latitude": 49.786804, "Longtitude": 30.938915, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T11:52:00.000Z" }, { "Id": 102, "Title": "Сміттезвалище у лісі", "Latitude": 50.45126, "Longtitude": 30.341578, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T11:53:39.000Z" }, { "Id": 104, "Title": "Забруднене озеро", "Latitude": 50.410393, "Longtitude": 30.409212, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T12:10:58.000Z" }, { "Id": 105, "Title": "Сміттєзвалище", "Latitude": 50.418579, "Longtitude": 25.715431, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T12:12:20.000Z" }, { "Id": 107, "Title": "Незаконне вивезення сміття ", "Latitude": 50.515556, "Longtitude": 30.739853, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T13:45:43.000Z" }, { "Id": 108, "Title": "Незаконна вирубка лісів", "Latitude": 50.51696, "Longtitude": 30.745207, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:49:10.000Z" }, { "Id": 109, "Title": "Вирубка дерев біля траси Київ - Чернігів", "Latitude": 50.521263, "Longtitude": 30.788424, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:51:14.000Z" }, { "Id": 110, "Title": "Вирубка лісів", "Latitude": 50.518311, "Longtitude": 30.752041, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T13:51:35.000Z" }, { "Id": 112, "Title": "Забруднене озеро", "Latitude": 50.50214, "Longtitude": 30.752846, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:03:00.000Z" }, { "Id": 113, "Title": "Вирубка дерев", "Latitude": 50.523415, "Longtitude": 30.735209, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T14:08:35.000Z" }, { "Id": 114, "Title": "Будівництво Біланівського ГЗК", "Latitude": 49.165092, "Longtitude": 33.663483, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-03-27T14:13:58.000Z" }, { "Id": 116, "Title": "Попадання неочищених стічних вод в річку", "Latitude": 49.012878, "Longtitude": 24.73443, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:23:08.000Z" }, { "Id": 117, "Title": "Незаконний вилов риби", "Latitude": 49.387333, "Longtitude": 33.803204, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-03-27T14:25:51.000Z" }, { "Id": 118, "Title": "Сміттєзвалище", "Latitude": 50.531666, "Longtitude": 30.22267, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T14:28:58.000Z" }, { "Id": 119, "Title": "Забруденний ставок в Козельщині", "Latitude": 49.220345, "Longtitude": 33.847752, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:32:59.000Z" }, { "Id": 120, "Title": "Екологічний хаос", "Latitude": 50.304977, "Longtitude": 28.641491, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T14:53:02.000Z" }, { "Id": 121, "Title": "Остров из мусора", "Latitude": 48.476208, "Longtitude": 35.139729, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T14:57:50.000Z" }, { "Id": 124, "Title": "ставок Крива Руда", "Latitude": 49.595524, "Longtitude": 33.206306, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T15:12:45.000Z" }, { "Id": 125, "Title": "Жомова яма", "Latitude": 49.600002, "Longtitude": 33.195141, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-27T15:17:19.000Z" }, { "Id": 126, "Title": "Незаконне сміттєзвалище", "Latitude": 49.588081, "Longtitude": 33.215591, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T15:22:22.000Z" }, { "Id": 127, "Title": "Загрязнение воздуха предприятием  \"АрселорМиталл Кривой Рог\"", "Latitude": 47.871914, "Longtitude": 33.392773, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T16:10:18.000Z" }, { "Id": 128, "Title": "Проблема вивезення сміття та культури людей", "Latitude": 50.357262, "Longtitude": 30.438326, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T16:18:31.000Z" }, { "Id": 129, "Title": "Вирубка лісу", "Latitude": 48.168606, "Longtitude": 26.007471, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-27T16:38:44.000Z" }, { "Id": 130, "Title": "Звалище будівельного сміття ", "Latitude": 47.824783, "Longtitude": 35.050716, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T16:44:55.000Z" }, { "Id": 131, "Title": "Очисні споруди", "Latitude": 48.794651, "Longtitude": 26.034164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T18:22:54.000Z" }, { "Id": 132, "Title": "Бездомные собаки", "Latitude": 50.494171, "Longtitude": 30.447889, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T18:48:52.000Z" }, { "Id": 133, "Title": "Забруднення ставків.", "Latitude": 49.579945, "Longtitude": 34.500214, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:24:37.000Z" }, { "Id": 134, "Title": "Забруднена водойма", "Latitude": 50.419102, "Longtitude": 30.639389, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:42:40.000Z" }, { "Id": 135, "Title": "Проблема питної води", "Latitude": 49.087864, "Longtitude": 33.70052, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-27T19:44:46.000Z" }, { "Id": 136, "Title": "міське сміттєзвалище", "Latitude": 49.916622, "Longtitude": 28.558315, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T20:58:50.000Z" }, { "Id": 137, "Title": "Забруднення повытря", "Latitude": 47.873856, "Longtitude": 35.167503, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T22:40:59.000Z" }, { "Id": 138, "Title": "Экологическая культура жителей города", "Latitude": 48.312428, "Longtitude": 38.023682, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-27T22:56:15.000Z" }, { "Id": 139, "Title": "Сміттєзвалища на \"Балка\"", "Latitude": 48.410915, "Longtitude": 35.070831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-27T23:41:30.000Z" }, { "Id": 140, "Title": " горит свалка ТБО", "Latitude": 46.80106, "Longtitude": 36.711781, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T00:34:53.000Z" }, { "Id": 141, "Title": "Добыча сланцевого газа", "Latitude": 48.553795, "Longtitude": 37.288971, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-28T01:06:19.000Z" }, { "Id": 142, "Title": "Хранилище радиоактивных отходов «Щербаковское»", "Latitude": 48.310146, "Longtitude": 33.488388, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-28T04:05:32.000Z" }, { "Id": 143, "Title": "Грязное старое русло реки Лугань", "Latitude": 48.587788, "Longtitude": 39.3372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-28T12:14:04.000Z" }, { "Id": 144, "Title": "Загрязненная речка и прилегающая территория ", "Latitude": 48.587906, "Longtitude": 39.331978, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-28T12:17:10.000Z" }, { "Id": 145, "Title": "Экологическая культура жителей города", "Latitude": 48.567265, "Longtitude": 39.405106, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-28T12:28:52.000Z" }, { "Id": 146, "Title": "Викид шкідливих речовин у повітря - застарілий сміттепереробний завод у межах міста Києва", "Latitude": 50.398178, "Longtitude": 30.673183, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:43:00.000Z" }, { "Id": 147, "Title": "Свалка в Тоннельной  балке ", "Latitude": 48.413708, "Longtitude": 35.03231, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:55:49.000Z" }, { "Id": 148, "Title": "Свалка в Тоннельной  балке ", "Latitude": 48.414276, "Longtitude": 35.035831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-28T16:59:43.000Z" }, { "Id": 149, "Title": "Вирубка невеликого лісу ", "Latitude": 48.394905, "Longtitude": 35.046021, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-28T17:19:41.000Z" }, { "Id": 150, "Title": "Жахливі руїни дому ветеранів", "Latitude": 47.110561, "Longtitude": 37.679287, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T00:04:24.000Z" }, { "Id": 152, "Title": "проблема днепровских склонов", "Latitude": 50.44865, "Longtitude": 30.541391, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-29T06:13:47.000Z" }, { "Id": 153, "Title": "Сміттєзвалище ", "Latitude": 47.127163, "Longtitude": 37.673534, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T11:11:59.000Z" }, { "Id": 154, "Title": "загрязнение прибрежных морских вод", "Latitude": 47.088825, "Longtitude": 37.545776, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-29T11:18:21.000Z" }, { "Id": 155, "Title": "Огромная мусорка", "Latitude": 47.135498, "Longtitude": 37.631607, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-29T14:24:00.000Z" }, { "Id": 156, "Title": "Проблема разрушенных дамб пресноводных ставков", "Latitude": 45.321255, "Longtitude": 36.430664, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-03-29T17:05:36.000Z" }, { "Id": 158, "Title": "Слив с заводского отстойника непосредственно в море", "Latitude": 47.086956, "Longtitude": 37.622597, "ProblemTypes_Id": 5, "Status": 0, "Date": "2014-03-29T22:14:27.000Z" }, { "Id": 159, "Title": "Сміття,забруднення повітря", "Latitude": 48.719959, "Longtitude": 37.573242, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-30T00:01:18.000Z" }, { "Id": 160, "Title": "Стихійне сміттєзвалище", "Latitude": 50.532307, "Longtitude": 30.497831, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-03-30T03:00:19.000Z" }, { "Id": 161, "Title": "Екологічне забруднення місцевості на заповідній території Апостолівського району, Дніпропетровської області", "Latitude": 47.66608, "Longtitude": 34.0662, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-03-30T07:24:07.000Z" }, { "Id": 163, "Title": "Дышим хлором , берилием , бензолом , натрийдихлофокперит , и вообще проблема уже 115 лет", "Latitude": 47.101448, "Longtitude": 37.601311, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-03-30T11:58:28.000Z" }, { "Id": 164, "Title": "Озеро Снітинка біля Фастова", "Latitude": 50.106819, "Longtitude": 29.96727, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-04-02T17:22:12.000Z" }, { "Id": 165, "Title": "Сміття", "Latitude": 51.197445, "Longtitude": 24.703552, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-03T00:48:29.000Z" }, { "Id": 166, "Title": "Вирубка лісу", "Latitude": 48.695042, "Longtitude": 22.40181, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-06T17:00:38.000Z" }, { "Id": 167, "Title": "Загрязнена річка", "Latitude": 49.413094, "Longtitude": 31.260611, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-04-06T22:14:31.000Z" }, { "Id": 168, "Title": "Сміттєзвалище біля джерела води", "Latitude": 50.456192, "Longtitude": 28.620382, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-08T21:52:40.000Z" }, { "Id": 169, "Title": "Срублено здоровое дерево", "Latitude": 46.488506, "Longtitude": 30.677847, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-09T21:31:42.000Z" }, { "Id": 170, "Title": "Слив канализации в озеро", "Latitude": 46.505081, "Longtitude": 30.691099, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-04-09T21:38:37.000Z" }, { "Id": 171, "Title": "Сміттєзвалище", "Latitude": 49.391499, "Longtitude": 24.99011, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-10T00:19:48.000Z" }, { "Id": 172, "Title": "Сміттєзвалище", "Latitude": 49.325676, "Longtitude": 24.992434, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-11T13:26:53.000Z" }, { "Id": 173, "Title": "Грибовицьке сміттєзвалище", "Latitude": 49.902538, "Longtitude": 24.036156, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-12T17:55:59.000Z" }, { "Id": 174, "Title": "Стихійні сміттєзвалища", "Latitude": 50.064194, "Longtitude": 25.153198, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-14T19:04:18.000Z" }, { "Id": 175, "Title": "Бездомные животные", "Latitude": 46.972755, "Longtitude": 32.040253, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-04-18T18:24:46.000Z" }, { "Id": 176, "Title": "Парк завалений сміттям, яке періодично залишають відпочиваючі", "Latitude": 50.466274, "Longtitude": 30.607437, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-04-24T17:55:04.000Z" }, { "Id": 177, "Title": "Стихійні звалища на Вінниччині, проблема утилізації відходів", "Latitude": 48.381794, "Longtitude": 28.857994, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-24T18:06:52.000Z" }, { "Id": 178, "Title": "Вирубка лісу.", "Latitude": 48.482479, "Longtitude": 27.864418, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-04-25T20:21:46.000Z" }, { "Id": 180, "Title": "утилізація побутових відходів", "Latitude": -67.609222, "Longtitude": 69.609375, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-05-14T18:46:01.000Z" }, { "Id": 181, "Title": "Повсеместная рубка леса вокруг Харькова", "Latitude": 50.01535, "Longtitude": 36.161926, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-05-17T00:46:37.000Z" }, { "Id": 182, "Title": "Истребление Байбака(сурка)", "Latitude": 49.766743, "Longtitude": 37.250435, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-05-17T02:03:48.000Z" }, { "Id": 183, "Title": "Забруднена водойма", "Latitude": 49.575104, "Longtitude": 32.092094, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-17T11:40:22.000Z" }, { "Id": 184, "Title": "Забруднене озеро", "Latitude": 50.397739, "Longtitude": 30.431957, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-18T12:25:47.000Z" }, { "Id": 185, "Title": "Забруднення водойм", "Latitude": 50.078297, "Longtitude": 25.161438, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-21T17:07:08.000Z" }, { "Id": 186, "Title": "Стихійне сміттєзвалище", "Latitude": 48.449131, "Longtitude": 25.585999, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-05-25T02:03:54.000Z" }, { "Id": 187, "Title": "Стврено сміттєзвалище на місці водовідводного каналу", "Latitude": 50.552013, "Longtitude": 30.111036, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-05-25T10:43:42.000Z" }, { "Id": 188, "Title": "Річка", "Latitude": 49.402039, "Longtitude": 31.25164, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-05-27T01:10:55.000Z" }, { "Id": 189, "Title": "Проблема", "Latitude": 45.089035, "Longtitude": -60.46875, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-06-04T17:01:40.000Z" }, { "Id": 193, "Title": "Мусор под домом", "Latitude": 48.429199, "Longtitude": 34.714737, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-04T13:39:23.000Z" }, { "Id": 195, "Title": "Вирубують ліс", "Latitude": 50.493664, "Longtitude": 29.998512, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-05T13:08:59.000Z" }, { "Id": 196, "Title": "Незаконний вивіз піска. ", "Latitude": 50.531517, "Longtitude": 30.581776, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-05T22:32:34.000Z" }, { "Id": 197, "Title": "Спалюють листя", "Latitude": 50.022728, "Longtitude": 36.354061, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-06T13:56:57.000Z" }, { "Id": 199, "Title": "Шкідливі вихлопні гази ДВЗ", "Latitude": 48.452374, "Longtitude": 35.03952, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-07T11:08:54.000Z" }, { "Id": 200, "Title": "Cкупчення мусору біля Водограю", "Latitude": 49.353195, "Longtitude": 23.240461, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-07T13:35:00.000Z" }, { "Id": 201, "Title": "Потрібна карта для розміщення точок збору пластикових пляшок", "Latitude": 50.398014, "Longtitude": 30.547485, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-07T14:29:24.000Z" }, { "Id": 202, "Title": "Сміттєзвалище", "Latitude": 49.455963, "Longtitude": 26.97504, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-08T14:52:49.000Z" }, { "Id": 208, "Title": "Вывозят песок с пляжа ", "Latitude": 45.267879, "Longtitude": 33.076057, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-11-12T21:46:34.000Z" }, { "Id": 209, "Title": "Сміттєзвалище 5 метрів від дороги", "Latitude": 48.430794, "Longtitude": 25.720282, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-20T21:43:47.000Z" }, { "Id": 210, "Title": "Несанкціоноване звалища побутових відходів на території села Наварія", "Latitude": 49.742092, "Longtitude": 23.90535, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-24T14:19:50.000Z" }, { "Id": 212, "Title": "Незаконна вирубка лісу", "Latitude": 50.704231, "Longtitude": 29.53228, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:13:11.000Z" }, { "Id": 213, "Title": "Незаконний злив відходів в водойму .", "Latitude": 50.700264, "Longtitude": 29.521809, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T11:22:47.000Z" }, { "Id": 214, "Title": "Знищення лісових угідь", "Latitude": 50.564484, "Longtitude": 30.223389, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:33:16.000Z" }, { "Id": 215, "Title": " Свалка во дворе постоянно горит", "Latitude": 48.437386, "Longtitude": 35.013729, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T11:34:50.000Z" }, { "Id": 216, "Title": "Вирубка лісу", "Latitude": 50.509499, "Longtitude": 29.443359, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T11:42:28.000Z" }, { "Id": 217, "Title": "осушение водоемов", "Latitude": 49.963863, "Longtitude": 29.739389, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T11:44:35.000Z" }, { "Id": 218, "Title": "Сміттєзвалище прямо вздовж дороги", "Latitude": 50.432007, "Longtitude": 30.616751, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:11:36.000Z" }, { "Id": 219, "Title": "Мусор на дороге, и по всей улице", "Latitude": 50.505238, "Longtitude": 30.619713, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:14:33.000Z" }, { "Id": 220, "Title": "Cміття, дуже багато сміття!", "Latitude": 49.438217, "Longtitude": 32.061882, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T12:24:23.000Z" }, { "Id": 221, "Title": "Забруднення повітря ", "Latitude": 49.206493, "Longtitude": 24.677696, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-25T12:56:01.000Z" }, { "Id": 223, "Title": "Дуже багато сміття в лісі, яке залишають відпочиваючі", "Latitude": 50.714504, "Longtitude": 30.528603, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T13:47:46.000Z" }, { "Id": 224, "Title": "свалка муссора", "Latitude": 50.411121, "Longtitude": 30.61113, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T14:55:39.000Z" }, { "Id": 226, "Title": "вирубка лісу", "Latitude": 50.366596, "Longtitude": 30.044432, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T15:24:52.000Z" }, { "Id": 227, "Title": "Сміттєспалювальний майданчик, який горить і димить весь час. ", "Latitude": 50.409828, "Longtitude": 30.357285, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T16:27:32.000Z" }, { "Id": 229, "Title": "Вирубки лісу", "Latitude": 50.839767, "Longtitude": 30.842743, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-25T17:41:13.000Z" }, { "Id": 230, "Title": "Звалище", "Latitude": 50.701786, "Longtitude": 29.642744, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-25T18:15:37.000Z" }, { "Id": 234, "Title": "Відстійники стічних промислових вод, стихійне сміттєзвалище", "Latitude": 49.802826, "Longtitude": 24.057558, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-25T20:58:45.000Z" }, { "Id": 235, "Title": "Видобуток уранових руд", "Latitude": 48.436947, "Longtitude": 32.329674, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-11-25T22:04:28.000Z" }, { "Id": 241, "Title": "Екологічний стан річки Інгул в межах міста Кіровограда", "Latitude": 48.504822, "Longtitude": 32.262169, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-27T08:35:45.000Z" }, { "Id": 243, "Title": "Вырубка и застройка уникального лесного массива в черте города", "Latitude": 50.05846, "Longtitude": 36.241577, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-11-27T10:54:11.000Z" }, { "Id": 244, "Title": "Дуже засмічений і недоглянутий парк", "Latitude": 49.942108, "Longtitude": 36.393845, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-11-27T17:10:31.000Z" }, { "Id": 245, "Title": "Забруднення русла річки Червона внаслідок ерозії грунтів", "Latitude": 50.076969, "Longtitude": 37.627171, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-11-29T13:34:44.000Z" }, { "Id": 247, "Title": "Листья", "Latitude": 50.020809, "Longtitude": 36.246964, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-01T17:40:15.000Z" }, { "Id": 248, "Title": "Забрудення навколишнього середовища, води,повітря", "Latitude": 48.736774, "Longtitude": 22.486439, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-02T13:43:55.000Z" }, { "Id": 250, "Title": "Інтенсивна вирубка лісу", "Latitude": 49.891537, "Longtitude": 24.328966, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-02T22:37:38.000Z" }, { "Id": 251, "Title": "Незаконная свалка", "Latitude": 50.353951, "Longtitude": 30.348186, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-03T00:00:57.000Z" }, { "Id": 252, "Title": " \"Утилизационный  комплекс\" ( особо опасные отходы) в черте города", "Latitude": 50.778156, "Longtitude": 28.355713, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-04T21:02:18.000Z" }, { "Id": 253, "Title": "Отравление воздуха вредными выбросами", "Latitude": 46.514977, "Longtitude": 30.683891, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-05T15:50:00.000Z" }, { "Id": 255, "Title": "Незаконна забудова в селі Чубинське", "Latitude": 50.38588, "Longtitude": 30.839567, "ProblemTypes_Id": 3, "Status": 0, "Date": "2014-12-09T14:52:49.000Z" }, { "Id": 257, "Title": "Незаконне полювання на види диких тварин", "Latitude": 49.153645, "Longtitude": 23.03215, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-13T18:00:05.000Z" }, { "Id": 259, "Title": "Забруднене озеро.", "Latitude": 49.915165, "Longtitude": 24.220325, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T16:28:30.000Z" }, { "Id": 260, "Title": "Надзвичайно забруднене озеро", "Latitude": 49.913597, "Longtitude": 24.22464, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T16:34:20.000Z" }, { "Id": 261, "Title": "Незаконна вирубка лісів", "Latitude": 49.175644, "Longtitude": 22.844353, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-15T18:06:44.000Z" }, { "Id": 262, "Title": "тверді побутові відходи ", "Latitude": 49.668293, "Longtitude": 24.559937, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-15T18:16:27.000Z" }, { "Id": 263, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.337765, "Longtitude": 22.987003, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-15T21:26:32.000Z" }, { "Id": 264, "Title": "Забруднення поверхневих вод річки Дністер", "Latitude": 49.523426, "Longtitude": 23.194885, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T22:06:01.000Z" }, { "Id": 265, "Title": "Забруднення  поверхневих вод річки Дністер", "Latitude": 49.518078, "Longtitude": 23.192139, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-15T22:14:41.000Z" }, { "Id": 266, "Title": "Забруднення навколишнього довкілля.", "Latitude": 50.24369, "Longtitude": 23.595886, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T10:26:27.000Z" }, { "Id": 267, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.337315, "Longtitude": 22.989578, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T10:28:00.000Z" }, { "Id": 268, "Title": "забруднення атмосферне повітря", "Latitude": 49.783039, "Longtitude": 23.156433, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T10:39:29.000Z" }, { "Id": 269, "Title": "Незаконне викидання сміття біля р. Дністер!", "Latitude": 49.336926, "Longtitude": 22.990007, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T10:54:06.000Z" }, { "Id": 270, "Title": "Очисні споруди", "Latitude": 49.867451, "Longtitude": 24.085787, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:15:18.000Z" }, { "Id": 271, "Title": "Забруднення та зникнення річки Свиня", "Latitude": 50.07653, "Longtitude": 23.955688, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:42:24.000Z" }, { "Id": 272, "Title": "Забруднення водойм", "Latitude": 49.865433, "Longtitude": 24.085207, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:49:16.000Z" }, { "Id": 274, "Title": "Забруднення водойми комунальним підприємством", "Latitude": 49.865517, "Longtitude": 24.083662, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T11:58:56.000Z" }, { "Id": 275, "Title": "Порушення сільськогосподарських угідь та утворення карстових западин", "Latitude": 49.940617, "Longtitude": 23.381653, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T15:50:21.000Z" }, { "Id": 276, "Title": "Забруднення сільськогосподарських угідь та утворення карстових проваль", "Latitude": 49.938847, "Longtitude": 23.395386, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T15:54:54.000Z" }, { "Id": 277, "Title": "Забруднення  поверхневих вод річки Дністер.", "Latitude": 49.504978, "Longtitude": 23.219948, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T19:17:22.000Z" }, { "Id": 278, "Title": "Забруднення річок", "Latitude": 48.5257, "Longtitude": 23.517609, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-16T20:02:36.000Z" }, { "Id": 279, "Title": "Незаконна вирубка лісів", "Latitude": 51.82729, "Longtitude": 25.716248, "ProblemTypes_Id": 1, "Status": 0, "Date": "2014-12-16T20:13:37.000Z" }, { "Id": 280, "Title": "Екологічні проблеми", "Latitude": 49.798996, "Longtitude": 23.343201, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-16T21:19:05.000Z" }, { "Id": 281, "Title": "Незаконне сміттєзвалище", "Latitude": 48.849045, "Longtitude": 23.45019, "ProblemTypes_Id": 2, "Status": 0, "Date": "2014-12-17T12:12:27.000Z" }, { "Id": 282, "Title": "Забруднення та зникнення річки Свиня.", "Latitude": 50.043304, "Longtitude": 23.999376, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T12:32:52.000Z" }, { "Id": 283, "Title": "Забруднення річки Турії", "Latitude": 51.235374, "Longtitude": 24.712372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:44:25.000Z" }, { "Id": 284, "Title": "Забруднення річки Турії", "Latitude": 51.235374, "Longtitude": 24.712372, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:44:30.000Z" }, { "Id": 285, "Title": " Забруднення річки Турії.", "Latitude": 51.238762, "Longtitude": 24.727221, "ProblemTypes_Id": 4, "Status": 0, "Date": "2014-12-17T21:49:08.000Z" }, { "Id": 286, "Title": "браконьєрство", "Latitude": 49.370525, "Longtitude": 24.253693, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-17T23:03:14.000Z" }, { "Id": 287, "Title": " браконьєрство", "Latitude": 49.364769, "Longtitude": 24.243994, "ProblemTypes_Id": 6, "Status": 0, "Date": "2014-12-17T23:20:33.000Z" }, { "Id": 289, "Title": "бездомні собаки", "Latitude": 49.348389, "Longtitude": 23.506622, "ProblemTypes_Id": 7, "Status": 0, "Date": "2014-12-27T16:43:43.000Z" }, { "Id": 290, "Title": "Браконьерская вырубка леса", "Latitude": 50.048981, "Longtitude": 36.234627, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-01-05T14:41:02.000Z" }, { "Id": 291, "Title": "Эрозия почвы", "Latitude": 51.520668, "Longtitude": 31.333567, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-01-07T11:35:40.000Z" }, { "Id": 295, "Title": "Переповнений полігон твердих побутових відходів", "Latitude": 49.466339, "Longtitude": 31.860695, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-06T16:43:30.000Z" }, { "Id": 296, "Title": "Бездомные животные", "Latitude": 46.852207, "Longtitude": 35.366364, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-06T22:11:06.000Z" }, { "Id": 297, "Title": "Свалки мусора", "Latitude": 46.85865, "Longtitude": 35.322826, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-06T23:58:19.000Z" }, { "Id": 298, "Title": "Вырубка лесополосы", "Latitude": 46.853573, "Longtitude": 35.300701, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-07T00:02:08.000Z" }, { "Id": 299, "Title": "Неприятный запах от мясокомбината", "Latitude": 46.844608, "Longtitude": 35.344948, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-07T00:05:57.000Z" }, { "Id": 300, "Title": "Улицы утопают в грязи", "Latitude": 46.853325, "Longtitude": 35.325336, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-07T00:10:06.000Z" }, { "Id": 301, "Title": "Хотиславський кар`єр ", "Latitude": 51.698471, "Longtitude": 24.204683, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-03-10T19:37:22.000Z" }, { "Id": 302, "Title": "горить торф", "Latitude": 50.562904, "Longtitude": 30.294371, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-12T15:33:08.000Z" }, { "Id": 303, "Title": "масове спалення листя і сміття жителямии міста", "Latitude": 50.56078, "Longtitude": 30.227337, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-12T15:38:38.000Z" }, { "Id": 304, "Title": "масове спалювання листя", "Latitude": 50.517574, "Longtitude": 30.239353, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-03-12T15:40:55.000Z" }, { "Id": 305, "Title": "Неконтрольована масова вирубка лісу", "Latitude": 50.321793, "Longtitude": 29.049225, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-12T23:14:40.000Z" }, { "Id": 306, "Title": "Незаконне смітезвалище відходів каменеобробки", "Latitude": 50.248466, "Longtitude": 29.146214, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-12T23:19:00.000Z" }, { "Id": 307, "Title": "велика куча сміття", "Latitude": 49.750546, "Longtitude": 31.418028, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-13T00:45:16.000Z" }, { "Id": 309, "Title": "Сміттєзвалище побутових та будматеріалів", "Latitude": 47.940151, "Longtitude": 35.187321, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-16T08:54:20.000Z" }, { "Id": 310, "Title": "Осушення території, меліоративні роботи, поглиблення русла річки", "Latitude": 50.111771, "Longtitude": 25.089169, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T11:40:33.000Z" }, { "Id": 312, "Title": "меліоративні роботи, осушення території, знищення природного покриву", "Latitude": 50.106049, "Longtitude": 25.088482, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T12:02:17.000Z" }, { "Id": 313, "Title": "Знищення місця зростання меч-трави болотної (Червона книга України) та", "Latitude": 50.106682, "Longtitude": 25.113586, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-03-16T12:13:39.000Z" }, { "Id": 314, "Title": "Вирубка лісів для побудови гірськолижних трас", "Latitude": 48.092758, "Longtitude": 23.312988, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-03-23T17:21:52.000Z" }, { "Id": 315, "Title": "Сміттєзвалище (будматеріали та інше побутове сміття", "Latitude": 50.469021, "Longtitude": 30.342951, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-03-25T15:15:25.000Z" }, { "Id": 316, "Title": "Забруднення водоймища", "Latitude": 49.861828, "Longtitude": 24.015116, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-03-28T17:16:02.000Z" }, { "Id": 317, "Title": "Незаконне розміщення 17 тис. тон нафтових відходів (гудронів)", "Latitude": 49.455406, "Longtitude": 24.090786, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-04-15T20:56:26.000Z" }, { "Id": 318, "Title": "Небезпечені відходи сірчаного виробництва на території РДГХП \"Сірка\"", "Latitude": 49.456299, "Longtitude": 24.112072, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-04-15T21:56:38.000Z" }, { "Id": 319, "Title": "незаконна вирубка лісу", "Latitude": 51.003601, "Longtitude": 28.290825, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-04-21T02:29:14.000Z" }, { "Id": 320, "Title": "Масове вирубування лісу", "Latitude": 51.184509, "Longtitude": 27.332611, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-04-21T18:30:43.000Z" }, { "Id": 321, "Title": "сміттєзвалище м. Городок", "Latitude": 49.801434, "Longtitude": 23.739052, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-22T09:55:14.000Z" }, { "Id": 322, "Title": "Очень мало мусорок на улицах города Северодонецк.", "Latitude": 48.944828, "Longtitude": 38.487682, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-24T18:29:15.000Z" }, { "Id": 323, "Title": "Неконтрольоване скидання сміття в не призначеному для цього місці", "Latitude": 50.345078, "Longtitude": 30.517498, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-26T17:18:59.000Z" }, { "Id": 324, "Title": "засміченість лісу ", "Latitude": 49.817387, "Longtitude": 24.121513, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-04-27T17:53:11.000Z" }, { "Id": 325, "Title": "Несанкціоноване сміттєзвалище", "Latitude": 49.314213, "Longtitude": 24.994284, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-09T21:53:58.000Z" }, { "Id": 326, "Title": "Стихійне сміттєзвалище", "Latitude": 50.396481, "Longtitude": 30.365353, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-13T12:34:30.000Z" }, { "Id": 327, "Title": "Незаконна вирубка лісу", "Latitude": 49.899609, "Longtitude": 23.984528, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-14T14:32:17.000Z" }, { "Id": 329, "Title": "Вирубка лісу", "Latitude": 49.968117, "Longtitude": 23.32552, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-14T17:19:56.000Z" }, { "Id": 330, "Title": "Екологічний стан повітряного середовища", "Latitude": 49.382374, "Longtitude": 24.143829, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-14T18:53:57.000Z" }, { "Id": 331, "Title": "Екологічний стан повітряного середовища", "Latitude": 49.381477, "Longtitude": 24.151382, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-14T19:26:10.000Z" }, { "Id": 332, "Title": "Відходи ", "Latitude": 49.385391, "Longtitude": 24.141426, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-14T20:01:50.000Z" }, { "Id": 333, "Title": "Очистные сооружения воняют", "Latitude": 49.205544, "Longtitude": 28.434505, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-15T10:40:15.000Z" }, { "Id": 334, "Title": "Забруднення річки Острівка", "Latitude": 50.269375, "Longtitude": 24.63521, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:05:00.000Z" }, { "Id": 335, "Title": "Забруднення річки Острівка", "Latitude": 50.279892, "Longtitude": 24.647291, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:12:37.000Z" }, { "Id": 336, "Title": "Забруднення річки Острівки", "Latitude": 50.284679, "Longtitude": 24.650145, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:31:24.000Z" }, { "Id": 337, "Title": "Забруднення річки Острівки", "Latitude": 50.279411, "Longtitude": 24.648514, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-16T17:46:28.000Z" }, { "Id": 338, "Title": "Виробництво сірки", "Latitude": 49.465446, "Longtitude": 24.132843, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-16T23:55:27.000Z" }, { "Id": 339, "Title": "Засмічення", "Latitude": 49.82259, "Longtitude": 24.025555, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T12:00:59.000Z" }, { "Id": 340, "Title": "Засмічення", "Latitude": 49.822758, "Longtitude": 24.02504, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T12:04:54.000Z" }, { "Id": 341, "Title": "Забруднення річки Тисмениця фенолами", "Latitude": 49.280785, "Longtitude": 23.406078, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T17:49:02.000Z" }, { "Id": 342, "Title": "Забруднення річки Тисмениця фенолами", "Latitude": 49.281982, "Longtitude": 23.407913, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T18:17:17.000Z" }, { "Id": 343, "Title": "Забруднення річки Свиня.", "Latitude": 50.155895, "Longtitude": 24.033709, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T18:36:29.000Z" }, { "Id": 344, "Title": "Забруднення річки Свиня.", "Latitude": 50.133617, "Longtitude": 24.052334, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T19:40:41.000Z" }, { "Id": 345, "Title": "водна ерозія", "Latitude": 49.620274, "Longtitude": 24.443207, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-17T20:44:17.000Z" }, { "Id": 346, "Title": "незаконна вирубка", "Latitude": 49.312141, "Longtitude": 22.810106, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-17T20:58:11.000Z" }, { "Id": 347, "Title": "Вирубка лісу", "Latitude": 49.327358, "Longtitude": 23.015671, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-17T22:49:12.000Z" }, { "Id": 348, "Title": "діяльність свиноферми", "Latitude": 50.197754, "Longtitude": 23.795315, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-17T23:40:09.000Z" }, { "Id": 349, "Title": "Проблеми зі сміттям в Пустомитах", "Latitude": 49.708496, "Longtitude": 23.887024, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-18T06:59:58.000Z" }, { "Id": 350, "Title": "Вирубка лысу", "Latitude": 49.326687, "Longtitude": 23.015499, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-05-18T08:54:09.000Z" }, { "Id": 351, "Title": "Колишній завод Радикал", "Latitude": 50.457191, "Longtitude": 30.642908, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-19T16:47:27.000Z" }, { "Id": 352, "Title": "Випасання худоби на території ботанічного заказника \"Кемпа\"", "Latitude": 50.085014, "Longtitude": 25.127277, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-05-20T20:59:11.000Z" }, { "Id": 354, "Title": "Завод Радикал - майже 100 тисяч тон ртутьвмісних відходів", "Latitude": 50.457775, "Longtitude": 30.643488, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-22T16:48:29.000Z" }, { "Id": 355, "Title": "Проблема з очисними спорудами", "Latitude": 49.644958, "Longtitude": 23.85973, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-05-27T16:06:27.000Z" }, { "Id": 356, "Title": "Жорстоке поводження з тваринами в КП", "Latitude": 49.912457, "Longtitude": 36.277069, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-05-29T10:31:17.000Z" }, { "Id": 357, "Title": "Свалка", "Latitude": 47.104252, "Longtitude": 37.674179, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-05-29T20:55:39.000Z" }, { "Id": 358, "Title": "Аварійний стан водоскидної споруди", "Latitude": 49.788448, "Longtitude": 30.114904, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-06-02T16:28:18.000Z" }, { "Id": 359, "Title": "Стихійне звалище будматеріалів - с.Пирогів", "Latitude": 50.345535, "Longtitude": 30.520706, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-03T16:46:25.000Z" }, { "Id": 360, "Title": "Незаконне звалище у лісі, сміття вивозять камазами, корупція", "Latitude": 50.365395, "Longtitude": 30.206394, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-08T20:21:54.000Z" }, { "Id": 365, "Title": "Вырубка деревьев", "Latitude": 49.934483, "Longtitude": 36.395905, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-06-12T12:57:44.000Z" }, { "Id": 366, "Title": "Забруднення малої річки ", "Latitude": 49.815613, "Longtitude": 36.059532, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-06-17T14:32:57.000Z" }, { "Id": 367, "Title": "Забруднення побутовим сміттям лісосмуги", "Latitude": 49.886837, "Longtitude": 36.047729, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-06-17T19:24:04.000Z" }, { "Id": 368, "Title": "Шкідливі викиди в атмосферу", "Latitude": 49.532337, "Longtitude": 23.977661, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-07-07T17:20:37.000Z" }, { "Id": 369, "Title": "Сміття в парку", "Latitude": 49.94553, "Longtitude": 30.217123, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-10T14:53:18.000Z" }, { "Id": 372, "Title": "Дуже брудні літаки", "Latitude": 49.812954, "Longtitude": 23.95792, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-07-26T22:33:38.000Z" }, { "Id": 374, "Title": "Вирубка лісу в селі Велика Тур'я", "Latitude": 49.120064, "Longtitude": 24.091816, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-27T10:33:35.000Z" }, { "Id": 376, "Title": "Забруднення річки виробничими відходами", "Latitude": 49.970158, "Longtitude": 36.092834, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-07-28T21:00:19.000Z" }, { "Id": 377, "Title": "Незаконний вилов риби. Сітки, екрани, перемети....", "Latitude": 49.968281, "Longtitude": 36.091721, "ProblemTypes_Id": 6, "Status": 0, "Date": "2015-07-28T21:11:28.000Z" }, { "Id": 378, "Title": "сміттєзвалище", "Latitude": 50.587433, "Longtitude": 30.152578, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T11:26:00.000Z" }, { "Id": 379, "Title": "вивіз сміття і копання піску", "Latitude": 50.580238, "Longtitude": 30.174465, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T11:28:58.000Z" }, { "Id": 381, "Title": "Изрязаха горите тези гниди ДПС...", "Latitude": 41.631077, "Longtitude": 25.861147, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-30T13:11:51.000Z" }, { "Id": 382, "Title": "Бракониерство на дивеч!", "Latitude": 41.623947, "Longtitude": 25.829136, "ProblemTypes_Id": 6, "Status": 0, "Date": "2015-07-30T13:17:11.000Z" }, { "Id": 383, "Title": "Рязане на дървета...", "Latitude": 41.617008, "Longtitude": 25.885031, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-07-30T13:19:05.000Z" }, { "Id": 384, "Title": "Стихійне сміттєзвалище, забруднення річки", "Latitude": 49.659962, "Longtitude": 31.967726, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T14:03:29.000Z" }, { "Id": 385, "Title": "Несвоєчасність вивезення відходів, влаштування сміттєзвалища.", "Latitude": 50.266247, "Longtitude": 28.672342, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-07-30T14:27:30.000Z" }, { "Id": 386, "Title": "Забруднення парку", "Latitude": 48.767059, "Longtitude": 30.221844, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-02T21:15:41.000Z" }, { "Id": 387, "Title": "Машини вивозять буд сміття на дорогу", "Latitude": 50.411907, "Longtitude": 30.270939, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-05T14:25:52.000Z" }, { "Id": 388, "Title": "Скажені лисиці", "Latitude": 50.418373, "Longtitude": 30.271252, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-06T08:18:55.000Z" }, { "Id": 389, "Title": "Хвърляне на отпадъци в забранена местност!", "Latitude": 41.649483, "Longtitude": 25.868004, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-06T19:25:30.000Z" }, { "Id": 391, "Title": "Стихійні сміттєзвалища", "Latitude": 50.42878, "Longtitude": 30.251772, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T08:22:21.000Z" }, { "Id": 392, "Title": "Цигани на Львіському вокзалі", "Latitude": 49.823811, "Longtitude": 24.0271, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-07T10:23:49.000Z" }, { "Id": 393, "Title": "Стихійні звалища побутового та будівельного сміття.", "Latitude": 46.579807, "Longtitude": 30.763865, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T12:01:51.000Z" }, { "Id": 395, "Title": "Стрийське сміттєзвалище", "Latitude": 49.276543, "Longtitude": 23.826256, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-07T22:44:03.000Z" }, { "Id": 400, "Title": "Незаконне сміттєзвалище у лісовій посадці", "Latitude": 50.070911, "Longtitude": 36.295181, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T11:22:43.000Z" }, { "Id": 401, "Title": "Забруднення паркової зони та зони відпочинку", "Latitude": 50.029633, "Longtitude": 36.318592, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T11:42:38.000Z" }, { "Id": 402, "Title": "Сміття в місці громадського відпочинку", "Latitude": 50.414589, "Longtitude": 30.238495, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-09T22:31:42.000Z" }, { "Id": 403, "Title": "Сміттєзвалище", "Latitude": 50.385044, "Longtitude": 30.231199, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-08-10T08:49:13.000Z" }, { "Id": 433, "Title": "Вирубка лісів", "Latitude": 48.946972, "Longtitude": 23.892775, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T19:57:01.000Z" }, { "Id": 435, "Title": "Вирубка лісів", "Latitude": 48.718658, "Longtitude": 23.665195, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T20:48:39.000Z" }, { "Id": 436, "Title": "Забруднення річки", "Latitude": 48.720272, "Longtitude": 23.665838, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-12T20:59:18.000Z" }, { "Id": 437, "Title": "Вирубування бука", "Latitude": 48.706028, "Longtitude": 23.675922, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-12T21:04:50.000Z" }, { "Id": 444, "Title": "Очень грязная речушка", "Latitude": 50.698048, "Longtitude": 29.577974, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-13T16:35:03.000Z" }, { "Id": 451, "Title": "підприємство, що вигоовляє добриво з кісток тварин та птиці.", "Latitude": 48.475231, "Longtitude": 35.102776, "ProblemTypes_Id": 5, "Status": 0, "Date": "2015-08-14T09:17:42.000Z" }, { "Id": 484, "Title": "Калуська екологічна катастрофа", "Latitude": 49.029194, "Longtitude": 24.325052, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-15T12:06:26.000Z" }, { "Id": 486, "Title": "Зубрудненя і оміліня водойми", "Latitude": 48.402882, "Longtitude": 30.845661, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-15T17:46:32.000Z" }, { "Id": 528, "Title": " Болехівський шкірзавод", "Latitude": 49.064384, "Longtitude": 23.865074, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-15T21:46:24.000Z" }, { "Id": 544, "Title": "Рубають ліси", "Latitude": 48.355, "Longtitude": 24.52313, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-16T23:31:04.000Z" }, { "Id": 589, "Title": "Розорюваня попід проїжу частину", "Latitude": 48.419231, "Longtitude": 30.838537, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-17T07:59:03.000Z" }, { "Id": 624, "Title": "Вивозять пісок з річки", "Latitude": 49.161774, "Longtitude": 24.028494, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-08-18T14:54:15.000Z" }, { "Id": 625, "Title": "Пропадають скарби с. Солотвино", "Latitude": 47.958786, "Longtitude": 23.856256, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-18T15:06:12.000Z" }, { "Id": 626, "Title": "вирубка лісу", "Latitude": 49.126019, "Longtitude": 23.137207, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-08-18T16:25:51.000Z" }, { "Id": 634, "Title": "водорослі", "Latitude": 46.423897, "Longtitude": 30.787811, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-27T23:17:31.000Z" }, { "Id": 635, "Title": "морські водорослі", "Latitude": 46.426262, "Longtitude": 30.793476, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-08-27T23:29:50.000Z" }, { "Id": 638, "Title": "Загрязнение воздуха", "Latitude": 51.500408, "Longtitude": 31.273228, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-03T10:47:39.000Z" }, { "Id": 641, "Title": "Горять торфяники", "Latitude": 50.641842, "Longtitude": 30.026493, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-04T01:12:23.000Z" }, { "Id": 644, "Title": "Забруднення", "Latitude": 50.215153, "Longtitude": 24.377016, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-09-19T13:03:13.000Z" }, { "Id": 647, "Title": "ffgvfy", "Latitude": 52.406918, "Longtitude": 51.528439, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-10-01T16:23:22.000Z" }, { "Id": 653, "Title": "Problem!!!", "Latitude": 37.785835, "Longtitude": -122.406418, "ProblemTypes_Id": 3, "Status": 0, "Date": "2015-10-04T13:47:03.000Z" }, { "Id": 656, "Title": " Много мусора", "Latitude": 45.380795, "Longtitude": 36.617615, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-10-05T16:30:19.000Z" }, { "Id": 659, "Title": "Домбровський кар'єр", "Latitude": 49.026752, "Longtitude": 24.324713, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-10-05T23:42:52.000Z" }, { "Id": 660, "Title": "Грибовицьке сміттєзвалище!!", "Latitude": 49.917095, "Longtitude": 24.018227, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-10-06T01:00:47.000Z" }, { "Id": 662, "Title": "Problem", "Latitude": 36.609844, "Longtitude": -119.202545, "ProblemTypes_Id": 1, "Status": 0, "Date": "2015-10-06T10:01:37.000Z" }, { "Id": 663, "Title": "Домбровський кар'єр", "Latitude": 49.02013, "Longtitude": 24.328325, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-10-06T10:41:47.000Z" }, { "Id": 664, "Title": "Сміттєзвалище на Совських ставках", "Latitude": 50.408848, "Longtitude": 30.495214, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-10-06T16:17:23.000Z" }, { "Id": 665, "Title": "Загрязнение воздуха", "Latitude": 48.405476, "Longtitude": 35.113205, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-06T23:15:10.000Z" }, { "Id": 666, "Title": "Кислотоотстойник", "Latitude": 48.412552, "Longtitude": 35.145199, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-11-06T23:24:14.000Z" }, { "Id": 667, "Title": "22", "Latitude": 50.039997, "Longtitude": 36.364491, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:39:22.000Z" }, { "Id": 668, "Title": "2", "Latitude": 50.026051, "Longtitude": 36.387489, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:45:28.000Z" }, { "Id": 669, "Title": "33", "Latitude": 50.039997, "Longtitude": 36.364746, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-16T11:52:07.000Z" }, { "Id": 670, "Title": "Незаконне сміттєзвалище", "Latitude": 50.532253, "Longtitude": 30.590014, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-11-23T00:45:59.000Z" }, { "Id": 671, "Title": "Незаконний вивіз піску", "Latitude": 50.637405, "Longtitude": 30.712152, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-23T00:48:20.000Z" }, { "Id": 672, "Title": "Надзвичайно брудний парк", "Latitude": 49.895962, "Longtitude": 24.150696, "ProblemTypes_Id": 2, "Status": 0, "Date": "2015-11-23T15:40:37.000Z" }, { "Id": 674, "Title": "Сморід від Полтви", "Latitude": 49.829456, "Longtitude": 24.039888, "ProblemTypes_Id": 4, "Status": 0, "Date": "2015-11-28T20:09:01.000Z" }, { "Id": 675, "Title": "Самовільна вирубка дерев ", "Latitude": 50.632511, "Longtitude": 26.247078, "ProblemTypes_Id": 7, "Status": 0, "Date": "2015-11-29T21:55:37.000Z" }];
 
 /***/ }
 /******/ ]);
