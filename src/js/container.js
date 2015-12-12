@@ -10,28 +10,16 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import Video from './video'
 import actions from './actions';
 
-function menu (data) {
-    return ([
-        {
-            text: 'Date: ' + new Date(data.time)
-        },
-        {
-            text: 'Place: [' + data.lat + ', ' + data.lng + ' ]'
-        }
-    ]);
-}
 
 export default class Container extends Component {
     state = {
-        menuItems: [],
         leftBarWidth: 0,
         item: {}
     }
     clickHandler = (data) => {
         this.setState({
             item: data,
-            menuItems: menu(data),
-            leftBarWidth: '600px'
+            leftBarWidth: '500px'
         });
         this.refs.leftNav.open()
 }
@@ -42,6 +30,9 @@ export default class Container extends Component {
 
         function closeSide() {
             self.refs.leftNav.close();
+            self.setState({
+                leftBarWidth: '0px'
+            });
             elem.removeEventListener('click', closeSide)
         }
 
@@ -69,25 +60,30 @@ export default class Container extends Component {
                     }}
                     ref="appBar"
                     title="Map"
-                    iconElementLeft={<i style={{marginTop: 0, fontSize: '3em'}} className="fa fa-mobile"></i>}
+                    iconElementLeft={<i style={{marginTop: 0, fontSize: '3em'}} className="fa fa-mobile" />}
                     iconElementRight={<a style={{marginTop: 0}} className='download-link' href='#'>Download the App</a>}
                 >
                     <LeftNav
                         onNavOpen={this.closeSideBar}
                         style={{
-                        //width: this.state.leftBarWidth,
+                        width: this.state.leftBarWidth,
                         //backgroundColor: '#4CAF50',
                         color: '#fff'
                         }}
+                        className="side-bar"
                         header={<h2 className="side-bar-header" >Menu</h2>}
                         onChange={this.closeSideBar}
-                        // menuItems={this.state.menuItems}
                         ref="leftNav"
                         docked={false}
                     >
-                        <MenuItem index={1}><Video src={this.state.item.file}/></MenuItem>
-                        <MenuItem index={1}><i className="fa fa-calendar-o"/> Date: {date}</MenuItem>
-                        <MenuItem index={1}><i className="fa fa-map-marker"/> Place: {coords}</MenuItem>
+                        <MenuItem index={0}><Video src={this.state.item.file}/></MenuItem>
+                        <MenuItem index={1}>
+                            <hr />
+                        </MenuItem>
+                        <MenuItem index={2}><span className="item-label"><i className="fa fa-lg fa-calendar-o"/> Date: </span>{date}
+                        </MenuItem>
+                        <MenuItem index={3}><span className="item-label"><i className="fa fa-lg fa-map-marker"/> Place: </span>{coords}
+                        </MenuItem>
                     </LeftNav>
                 </AppBar>
                 <Map ref="map" markerClick={this.clickHandler.bind(this)} />

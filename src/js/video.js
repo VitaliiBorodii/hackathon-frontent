@@ -9,6 +9,7 @@ export default class Video extends Component {
         var video = this.refs.video;
         if (this.refs.video.paused) {
             video.play();
+            video.setAttribute('controls', 'controls');
             this.setState({
                 playing: true
             })

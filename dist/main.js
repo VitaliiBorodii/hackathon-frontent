@@ -60,15 +60,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var prefix = '../node_modules/';
-
-	function initialize(lat, lng) {
+	function initialize() {
 	    var rootElem = document.getElementById('root');
 	    (0, _reactDom.render)(_react2.default.createElement(_container2.default, null), rootElem);
-	}
-
-	function clickHandler(marker) {
-	    console.log(marker);
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
@@ -19726,14 +19720,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function menu(data) {
-	    return [{
-	        text: 'Date: ' + new Date(data.time)
-	    }, {
-	        text: 'Place: [' + data.lat + ', ' + data.lng + ' ]'
-	    }];
-	}
-
 	var Container = (function (_Component) {
 	    _inherits(Container, _Component);
 
@@ -19749,14 +19735,12 @@
 	        }
 
 	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Container)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
-	            menuItems: [],
 	            leftBarWidth: 0,
 	            item: {}
 	        }, _this.clickHandler = function (data) {
 	            _this.setState({
 	                item: data,
-	                menuItems: menu(data),
-	                leftBarWidth: '600px'
+	                leftBarWidth: '500px'
 	            });
 	            _this.refs.leftNav.open();
 	        }, _this.closeSideBar = function () {
@@ -19765,6 +19749,9 @@
 
 	            function closeSide() {
 	                self.refs.leftNav.close();
+	                self.setState({
+	                    leftBarWidth: '0px'
+	                });
 	                elem.removeEventListener('click', closeSide);
 	            }
 
@@ -19809,37 +19796,50 @@
 	                        {
 	                            onNavOpen: this.closeSideBar,
 	                            style: {
-	                                //width: this.state.leftBarWidth,
+	                                width: this.state.leftBarWidth,
 	                                //backgroundColor: '#4CAF50',
 	                                color: '#fff'
 	                            },
+	                            className: 'side-bar',
 	                            header: _react2.default.createElement(
 	                                'h2',
 	                                { className: 'side-bar-header' },
 	                                'Menu'
 	                            ),
-	                            onChange: this.closeSideBar
-	                            // menuItems={this.state.menuItems}
-	                            , ref: 'leftNav',
+	                            onChange: this.closeSideBar,
+	                            ref: 'leftNav',
 	                            docked: false
 	                        },
 	                        _react2.default.createElement(
 	                            _menuItem2.default,
-	                            { index: 1 },
+	                            { index: 0 },
 	                            _react2.default.createElement(_video2.default, { src: this.state.item.file })
 	                        ),
 	                        _react2.default.createElement(
 	                            _menuItem2.default,
 	                            { index: 1 },
-	                            _react2.default.createElement('i', { className: 'fa fa-calendar-o' }),
-	                            ' Date: ',
+	                            _react2.default.createElement('hr', null)
+	                        ),
+	                        _react2.default.createElement(
+	                            _menuItem2.default,
+	                            { index: 2 },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'item-label' },
+	                                _react2.default.createElement('i', { className: 'fa fa-lg fa-calendar-o' }),
+	                                ' Date: '
+	                            ),
 	                            date
 	                        ),
 	                        _react2.default.createElement(
 	                            _menuItem2.default,
-	                            { index: 1 },
-	                            _react2.default.createElement('i', { className: 'fa fa-map-marker' }),
-	                            ' Place: ',
+	                            { index: 3 },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'item-label' },
+	                                _react2.default.createElement('i', { className: 'fa fa-lg fa-map-marker' }),
+	                                ' Place: '
+	                            ),
 	                            coords
 	                        )
 	                    )
@@ -29125,6 +29125,7 @@
 	            var video = _this.refs.video;
 	            if (_this.refs.video.paused) {
 	                video.play();
+	                video.setAttribute('controls', 'controls');
 	                _this.setState({
 	                    playing: true
 	                });
