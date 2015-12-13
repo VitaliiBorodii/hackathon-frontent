@@ -45,8 +45,9 @@ export default class Map extends Component {
         })
 }
     render() {
+        var h = window.innerHeight - 64;
         return (
-            <div id="map"></div>
+            <div style={{height: h}} id="map"></div>
         );
     }
 }

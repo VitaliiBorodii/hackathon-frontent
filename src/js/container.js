@@ -10,10 +10,12 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import Video from './video'
 import actions from './actions';
 
+import prettydate from 'pretty-date'
+
 var initData = require('json!./main.json');
 
 var headerStyle = {
-    backgroundColor: '#ee6e73',
+    backgroundColor: '#01579B',
     height: '64px',
     lineHeight: '64px',
     boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)',
@@ -55,7 +57,7 @@ export default class Container extends Component {
     }
     render() {
         var i = this.state.item;
-        var date = new Date(1000 * (i.time || null)).toISOString().slice(0, 10);
+        var date = prettydate.format(new Date(1000 * (i.time || null)));
         var coords = '[' + i.lat + ', ' + i.lng + ']';
         return (
             <div>
@@ -70,6 +72,7 @@ export default class Container extends Component {
                         onNavOpen={this.closeSideBar}
                         style={{
                         width: this.state.leftBarWidth,
+                        maxWidth: '100%',
                         //backgroundColor: '#4CAF50',
                         color: '#fff'
                         }}
